@@ -60,7 +60,7 @@ export default function AIChat({
   const quickActions = [
     { icon: FileText, label: 'Créer 50 fichiers', prompt: 'Crée une structure complète de projet avec 50+ fichiers organisés en dossiers pour ' },
     { icon: Sparkles, label: 'Document 100 pages', prompt: 'Génère un document complet de 100 pages avec introduction, développement détaillé et conclusion sur ' },
-    { icon: ImageIcon, label: 'Présentation PowerPoint', prompt: 'Crée une présentation PowerPoint professionnelle de 20-30 slides sur ' },
+    { icon: ImageIcon, label: 'Présentation + Visuels', prompt: 'Crée une présentation PowerPoint professionnelle avec visuels automatiques (charts basés sur données, SVGs, diagrammes) adaptée pour audience executive sur ' },
   ];
 
   return (

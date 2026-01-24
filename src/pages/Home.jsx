@@ -384,6 +384,13 @@ Si contenu long:
 - 100+ points de contenu minimum
 - Qualité: cohérence >95%, originalité >80%
 
+Si présentation PowerPoint:
+- Crée 20-30 slides complètes avec structure intelligente
+- Génère visuels automatiques: charts (basés sur données existantes), SVGs personnalisés, diagrammes
+- Adapte style selon audience (executive/technique/commercial/académique/grand public)
+- Pour amélioration: analyse présentation existante et propose suggestions concrètes
+- Extrait données des fichiers pour créer graphiques pertinents
+
 ### 4. GESTION CONFLITS
 Si modifications simultanées possibles:
 - Détecte zones de conflit
