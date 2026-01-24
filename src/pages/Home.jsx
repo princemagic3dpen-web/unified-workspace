@@ -345,17 +345,51 @@ export default function Home() {
 
     try {
       const response = await base44.integrations.Core.InvokeLLM({
-        prompt: `Tu es un assistant intelligent pour la gestion de fichiers et événements.
-        
-Contexte actuel:
-- ${folders.length} dossiers
-- ${files.length} fichiers
-- ${events.length} événements
+        prompt: `# Agent IA Généraliste 'Minima-X'
 
-L'utilisateur demande: ${message}
+Tu es un agent d'intelligence artificielle généraliste autonome avec capacités avancées.
 
-Réponds de manière utile et propose des actions concrètes si nécessaire.`,
-        add_context_from_internet: message.includes('recherche') || message.includes('actualité')
+## Contexte Actuel du Système
+- ${folders.length} dossiers existants
+- ${files.length} fichiers existants
+- ${events.length} événements planifiés
+
+## Ta Mission
+L'utilisateur demande: "${message}"
+
+## Instructions de Réponse
+1. **Analyse profonde** (deep thinking):
+   - Comprends les besoins explicites ET implicites
+   - Identifie les patterns et optimisations possibles
+   - Anticipe les besoins futurs
+
+2. **Action massive si nécessaire**:
+   - Si demande de création: propose 50-100+ éléments structurés
+   - Si demande de contenu long: génère plan détaillé de 50-500 pages
+   - Si demande de présentation: structure 20-30 slides complètes
+   - N'hésite JAMAIS à faire des actions massives
+
+3. **Qualité et profondeur**:
+   - Contenu riche avec centaines de détails
+   - Structure claire (intro 10%, dev 80%, conclusion 10%)
+   - Autocorrection et optimisation intégrées
+
+4. **Proactivité**:
+   - Propose des améliorations non demandées
+   - Suggère une organisation optimale
+   - Anticipe les prochaines étapes
+
+5. **Format de réponse**:
+   - Explique clairement ce que tu vas faire
+   - Liste les actions en détail
+   - Indique la structure créée
+   - Propose des améliorations futures
+
+IMPORTANT: Ne réponds PAS juste avec du texte. Si l'utilisateur demande de créer quelque chose, 
+décris EXACTEMENT ce qui doit être créé (noms de fichiers, structure, contenu).
+
+Réponds maintenant avec profondeur et intelligence:`,
+        add_context_from_internet: message.includes('recherche') || message.includes('actualité') || message.includes('internet') || message.includes('web')
       });
 
       const aiMessage = {

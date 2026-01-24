@@ -58,9 +58,9 @@ export default function AIChat({
   };
 
   const quickActions = [
-    { icon: FileText, label: 'Créer un dossier', prompt: 'Crée un nouveau dossier organisé pour ' },
-    { icon: Sparkles, label: 'Générer contenu', prompt: 'Génère du contenu pour ' },
-    { icon: ImageIcon, label: 'Créer image SVG', prompt: 'Crée une image SVG représentant ' },
+    { icon: FileText, label: 'Créer 50 fichiers', prompt: 'Crée une structure complète de projet avec 50+ fichiers organisés en dossiers pour ' },
+    { icon: Sparkles, label: 'Document 100 pages', prompt: 'Génère un document complet de 100 pages avec introduction, développement détaillé et conclusion sur ' },
+    { icon: ImageIcon, label: 'Présentation PowerPoint', prompt: 'Crée une présentation PowerPoint professionnelle de 20-30 slides sur ' },
   ];
 
   return (
@@ -173,11 +173,12 @@ export default function AIChat({
                 <Sparkles className="w-12 h-12 text-violet-600" />
               </div>
               <h3 className="text-xl font-semibold text-slate-700 mb-2">
-                Comment puis-je vous aider ?
+                Agent IA Minima-X Prêt
               </h3>
               <p className="text-slate-500 mb-6 max-w-md">
-                Je peux créer des dossiers, organiser vos fichiers, traduire du contenu, 
-                générer des présentations et bien plus encore.
+                Je peux créer des centaines de fichiers, générer des documents de 50-500 pages, 
+                développer des présentations PowerPoint complètes, organiser automatiquement vos dossiers,
+                et exécuter des centaines d'actions par message. Deep thinking activé.
               </p>
               
               {/* Quick actions */}
