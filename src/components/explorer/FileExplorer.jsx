@@ -145,8 +145,8 @@ export default function FileExplorer({
               className={`
                 flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer
                 transition-all duration-200 group
-                ${isSelected ? 'bg-blue-600 text-white' : 'hover:bg-slate-700 text-slate-300'}
-                ${isDragOver ? 'ring-2 ring-blue-400 bg-blue-900/30' : ''}
+                ${isSelected ? 'bg-blue-600 text-white' : 'hover:bg-slate-200 text-slate-800'}
+                ${isDragOver ? 'ring-2 ring-blue-400 bg-blue-100' : ''}
               `}
               style={{ paddingLeft: `${depth * 16 + 12}px` }}
               onClick={() => {
@@ -164,7 +164,7 @@ export default function FileExplorer({
                 className="w-4 h-4 flex-shrink-0"
               >
                 {(subFolders.length > 0 || folderFiles.length > 0) && (
-                  <ChevronRight className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-slate-500'}`} />
+                  <ChevronRight className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-slate-600'}`} />
                 )}
               </motion.div>
               
@@ -184,12 +184,12 @@ export default function FileExplorer({
                     if (e.key === 'Enter') finishRename(folder.id, 'folder');
                     if (e.key === 'Escape') setEditingId(null);
                   }}
-                  className="h-6 py-0 px-1 text-sm bg-slate-700 border-slate-600 text-white"
+                  className="h-6 py-0 px-1 text-sm bg-white border-slate-300 text-slate-900"
                   autoFocus
                   onClick={(e) => e.stopPropagation()}
                 />
               ) : (
-                <span className={`text-sm font-medium truncate flex-1 ${isSelected ? 'text-white' : 'text-slate-300'}`}>
+                <span className={`text-sm font-medium truncate flex-1 ${isSelected ? 'text-white' : 'text-slate-900'}`}>
                   {folder.name}
                 </span>
               )}
@@ -203,7 +203,7 @@ export default function FileExplorer({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className={`h-6 w-6 opacity-0 group-hover:opacity-100 flex-shrink-0 ${isSelected ? 'text-white hover:bg-white/20' : 'text-slate-400 hover:bg-slate-600'}`}
+                    className={`h-6 w-6 opacity-0 group-hover:opacity-100 flex-shrink-0 ${isSelected ? 'text-white hover:bg-white/20' : 'text-slate-600 hover:bg-slate-200'}`}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <MoreVertical className="w-4 h-4" />
@@ -286,13 +286,13 @@ export default function FileExplorer({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3 p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 transition-all cursor-pointer group"
+            className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-300 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 transition-all cursor-pointer group"
             onClick={() => onFileClick(file)}
             draggable
             onDragStart={(e) => handleDragStart(e, file, 'file')}
           >
-            <div className="p-2 rounded-xl bg-slate-700 group-hover:bg-blue-600 transition-colors">
-              <FileIconComponent className="w-5 h-5 text-slate-400 group-hover:text-white" />
+            <div className="p-2 rounded-xl bg-slate-100 group-hover:bg-blue-600 transition-colors">
+              <FileIconComponent className="w-5 h-5 text-slate-600 group-hover:text-white" />
             </div>
             
             {editingId === file.id ? (
@@ -304,13 +304,13 @@ export default function FileExplorer({
                   if (e.key === 'Enter') finishRename(file.id, 'file');
                   if (e.key === 'Escape') setEditingId(null);
                 }}
-                className="flex-1 h-7 bg-slate-700 border-slate-600 text-white"
+                className="flex-1 h-7 bg-white border-slate-300 text-slate-900"
                 autoFocus
                 onClick={(e) => e.stopPropagation()}
               />
             ) : (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">{file.name}</p>
+                <p className="text-sm font-medium text-slate-900 truncate">{file.name}</p>
                 {file.size && (
                   <p className="text-xs text-slate-500">
                     {(file.size / 1024).toFixed(1)} KB
@@ -328,7 +328,7 @@ export default function FileExplorer({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-7 w-7 opacity-0 group-hover:opacity-100 flex-shrink-0 text-slate-400 hover:text-white hover:bg-slate-700"
+                  className="h-7 w-7 opacity-0 group-hover:opacity-100 flex-shrink-0 text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <MoreVertical className="w-4 h-4" />
@@ -394,18 +394,18 @@ export default function FileExplorer({
   const rootFolders = folders.filter(f => !f.parent_id);
 
   return (
-    <div className="h-full flex bg-slate-900 rounded-2xl shadow-xl border border-slate-700 overflow-hidden">
+    <div className="h-full flex bg-white rounded-2xl shadow-xl border border-slate-300 overflow-hidden">
       {/* Left Sidebar - Folder Tree */}
-      <div className="w-80 flex flex-col border-r border-slate-700 bg-slate-800/50">
+      <div className="w-80 flex flex-col border-r border-slate-300 bg-slate-50">
         {/* Header */}
-        <div className="p-4 border-b border-slate-700">
+        <div className="p-4 border-b border-slate-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-lg">
               <Folder className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Dossiers</h2>
-              <p className="text-xs text-slate-400">
+              <h2 className="text-lg font-bold text-slate-900">Dossiers</h2>
+              <p className="text-xs text-slate-600">
                 {folders.length} dossiers
               </p>
             </div>
@@ -415,7 +415,7 @@ export default function FileExplorer({
             variant="outline"
             size="sm"
             onClick={() => onCreateFolder(currentFolderId)}
-            className="w-full rounded-xl border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
+            className="w-full rounded-xl border-slate-300 text-slate-700 hover:bg-slate-100"
           >
             <FolderPlus className="w-4 h-4 mr-2" />
             Nouveau dossier
@@ -430,10 +430,10 @@ export default function FileExplorer({
           
           {folders.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center p-8">
-              <div className="p-4 rounded-2xl bg-slate-700/50 mb-4">
-                <Folder className="w-12 h-12 text-slate-500" />
+              <div className="p-4 rounded-2xl bg-slate-100 mb-4">
+                <Folder className="w-12 h-12 text-slate-400" />
               </div>
-              <p className="text-slate-400 mb-2">Aucun dossier</p>
+              <p className="text-slate-700 mb-2">Aucun dossier</p>
               <p className="text-sm text-slate-500">
                 Créez votre premier dossier
               </p>
@@ -443,18 +443,18 @@ export default function FileExplorer({
       </div>
 
       {/* Right Content - Files */}
-      <div className="flex-1 flex flex-col bg-slate-900">
+      <div className="flex-1 flex flex-col bg-white">
         {/* Header */}
-        <div className="p-4 border-b border-slate-700 bg-slate-800/30">
+        <div className="p-4 border-b border-slate-300 bg-slate-50">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-white">
+              <h2 className="text-lg font-bold text-slate-900">
                 {currentFolderId 
                   ? folders.find(f => f.id === currentFolderId)?.name || 'Fichiers'
                   : 'Tous les fichiers'
                 }
               </h2>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-600">
                 {currentFolderFiles.length} fichier{currentFolderFiles.length > 1 ? 's' : ''}
               </p>
             </div>
@@ -478,17 +478,17 @@ export default function FileExplorer({
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-center p-8">
-              <div className="p-6 rounded-2xl bg-slate-800/50 mb-4">
-                <File className="w-16 h-16 text-slate-600" />
+              <div className="p-6 rounded-2xl bg-slate-100 mb-4">
+                <File className="w-16 h-16 text-slate-400" />
               </div>
-              <p className="text-slate-300 text-lg mb-2">Aucun fichier</p>
-              <p className="text-sm text-slate-500 mb-4">
+              <p className="text-slate-800 text-lg mb-2">Aucun fichier</p>
+              <p className="text-sm text-slate-600 mb-4">
                 Importez des fichiers ou demandez à l'IA d'en créer
               </p>
               <Button
                 variant="outline"
                 onClick={onUploadFile}
-                className="rounded-xl border-slate-600 text-slate-300 hover:bg-slate-700"
+                className="rounded-xl border-slate-300 text-slate-700 hover:bg-slate-100"
               >
                 <Upload className="w-4 h-4 mr-2" />
                 Importer des fichiers
