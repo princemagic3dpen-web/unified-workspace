@@ -26,7 +26,8 @@ import {
   List,
   Briefcase,
   ImagePlus,
-  Box
+  Box,
+  Mic
 } from 'lucide-react';
 
 const PINNED_APPS = [
