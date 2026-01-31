@@ -12,7 +12,9 @@ import {
   Settings,
   Network,
   Code,
-  Mic
+  Mic,
+  AlertTriangle,
+  CheckCircle2
 } from 'lucide-react';
 
 import WindowManager from '../components/ui/WindowManager';
@@ -46,6 +48,10 @@ import AdvancedParametersManager from './AdvancedParametersManager';
 import ParametersDiagram from './ParametersDiagram';
 import WindowCreator from './WindowCreator';
 import VoiceCommandsList from './VoiceCommandsList';
+import ProactiveAgentsCreator from './ProactiveAgentsCreator';
+import AutoBugDetector from './AutoBugDetector';
+import ContentVerifiers from './ContentVerifiers';
+import OSOrchestrator from './OSOrchestrator';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -343,6 +349,30 @@ export default function OSPrincipal() {
         icon: Mic,
         color: '#6366f1',
         size: { width: 1400, height: 900 }
+      },
+      'proactive-agents-creator': {
+        title: 'Création Agents IA Proactifs',
+        icon: Bot,
+        color: '#a855f7',
+        size: { width: 1400, height: 900 }
+      },
+      'auto-bug-detector': {
+        title: 'Détecteur & Correcteur Bugs Auto',
+        icon: AlertTriangle,
+        color: '#ef4444',
+        size: { width: 1400, height: 900 }
+      },
+      'content-verifiers': {
+        title: 'Vérificateurs Contenu Parfait',
+        icon: CheckCircle2,
+        color: '#6366f1',
+        size: { width: 1400, height: 900 }
+      },
+      'os-orchestrator': {
+        title: 'Orchestration Globale OS',
+        icon: Settings,
+        color: '#06b6d4',
+        size: { width: 1600, height: 900 }
       }
     };
 
@@ -767,6 +797,18 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'voice-commands':
         return <VoiceCommandsList />;
+      
+      case 'proactive-agents-creator':
+        return <ProactiveAgentsCreator />;
+      
+      case 'auto-bug-detector':
+        return <AutoBugDetector />;
+      
+      case 'content-verifiers':
+        return <ContentVerifiers />;
+      
+      case 'os-orchestrator':
+        return <OSOrchestrator />;
       
       default:
         return null;

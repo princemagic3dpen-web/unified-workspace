@@ -75,6 +75,10 @@ import VideoGenerator from './pages/VideoGenerator';
 import VoiceCommandsList from './pages/VoiceCommandsList';
 import WindowCreator from './pages/WindowCreator';
 import WindowManager from './pages/WindowManager';
+import ProactiveAgentsCreator from './pages/ProactiveAgentsCreator';
+import AutoBugDetector from './pages/AutoBugDetector';
+import ContentVerifiers from './pages/ContentVerifiers';
+import OSOrchestrator from './pages/OSOrchestrator';
 import __Layout from './Layout.jsx';
 
 
@@ -107,6 +111,10 @@ export const PAGES = {
     "VoiceCommandsList": VoiceCommandsList,
     "WindowCreator": WindowCreator,
     "WindowManager": WindowManager,
+    "ProactiveAgentsCreator": ProactiveAgentsCreator,
+    "AutoBugDetector": AutoBugDetector,
+    "ContentVerifiers": ContentVerifiers,
+    "OSOrchestrator": OSOrchestrator,
 }
 
 export const pagesConfig = {
