@@ -232,7 +232,7 @@ export default function AIChat({
             <div>
               <h2 className="text-lg font-bold text-slate-900">Minima-X - Assistant IA v3.0</h2>
               <p className="text-xs text-slate-700">
-                💬 Mr Christian Debien | 🎤 Transcription temps réel | 🧮 Moteur mathématique LLaMA+Transformer
+                💬 Mr Christian Debien | 🎤 Vocal bidirectionnel | 🧮 500 LLaMA+Transformers | 🛠️ Tous outils disponibles
               </p>
             </div>
           </div>
@@ -390,7 +390,7 @@ export default function AIChat({
             </Button>
           </form>
           <p className="text-xs text-slate-500 mt-2 text-center">
-            🎤 Reconnaissance vocale active | 🧮 500x LLaMA & Transformers | 🤝 Collaboration temps réel
+            🎤 Vocal bidirectionnel actif | 🧮 500 LLaMA+Transformers | 🛠️ Utilisation automatique outils | 🪟 Ouverture fenêtres auto
           </p>
         </div>
       </div>

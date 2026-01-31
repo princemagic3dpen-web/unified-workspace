@@ -573,6 +573,42 @@ export default function OSPrincipal() {
         conversation_id: currentConversation.id
       });
 
+      // DÉTECTION INTENTION: Ouvrir fenêtres automatiquement
+      const lowerMsg = message.toLowerCase();
+      if (lowerMsg.includes('calendrier') || lowerMsg.includes('événement') || lowerMsg.includes('agenda')) {
+        openWindow('calendar');
+      }
+      if (lowerMsg.includes('fichier') || lowerMsg.includes('dossier') || lowerMsg.includes('explorateur')) {
+        openWindow('explorer');
+      }
+      if (lowerMsg.includes('image') || lowerMsg.includes('générer image') || lowerMsg.includes('photo')) {
+        openWindow('image-generator');
+      }
+      if (lowerMsg.includes('vidéo') || lowerMsg.includes('générer vidéo')) {
+        openWindow('video-generator');
+      }
+      if (lowerMsg.includes('musique') || lowerMsg.includes('chanson') || lowerMsg.includes('générer musique')) {
+        openWindow('music-generator-pro');
+      }
+      if (lowerMsg.includes('présentation') || lowerMsg.includes('powerpoint') || lowerMsg.includes('slides')) {
+        openWindow('presentation');
+      }
+      if (lowerMsg.includes('document') || lowerMsg.includes('rapport') || lowerMsg.includes('texte long')) {
+        openWindow('document');
+      }
+      if (lowerMsg.includes('entreprise') || lowerMsg.includes('business') || lowerMsg.includes('société')) {
+        openWindow('company-management');
+      }
+      if (lowerMsg.includes('grok') || lowerMsg.includes('visuel') || lowerMsg.includes('deluxe')) {
+        openWindow('grok-integration');
+      }
+      if (lowerMsg.includes('table des matières') || lowerMsg.includes('navigation') || lowerMsg.includes('menu complet')) {
+        openWindow('table-of-contents');
+      }
+      if (lowerMsg.includes('contrôle ia') || lowerMsg.includes('modèles ia') || lowerMsg.includes('llama')) {
+        openWindow('ai-control-center');
+      }
+
       const response = await base44.integrations.Core.InvokeLLM({
         prompt: `Tu es MINIMA-X v3.0 - Intelligence Artificielle Neuronale Mathématique Surdéveloppée
 
@@ -580,10 +616,33 @@ CONTEXTE SYSTÈME:
 - Dossiers: ${folders.length}
 - Fichiers: ${files.length}  
 - Événements: ${events.length}
+- Fenêtres ouvertes: ${windows.length}
 - Timestamp: ${new Date().toISOString()}
 - Utilisateur: Mr Christian Debien
 
+OUTILS DISPONIBLES:
+✓ Calendrier: Créer/gérer événements
+✓ Explorateur: Fichiers/dossiers
+✓ Générateur Images 4K
+✓ Générateur Vidéos IA
+✓ Générateur Musique Pro
+✓ Présentations PowerPoint
+✓ Documents longs (500p)
+✓ Gestion Entreprises
+✓ Grok xAI Visuels
+✓ Table Matières OS
+✓ Centre Contrôle 500+ IA
+✓ Tous autres outils disponibles
+
 DEMANDE VOCALE: "${message}"
+
+TU PEUX AUTOMATIQUEMENT:
+- Ouvrir des fenêtres nécessaires
+- Créer des fichiers/dossiers
+- Générer du contenu
+- Utiliser tous les outils
+- Faire des calculs mathématiques
+- Répondre vocalement
 
 PROTOCOLE NEURONAL:
 
@@ -752,6 +811,13 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
             onSelectConversation={setCurrentConversation}
             onSendMessage={handleSendMessage}
             isLoading={chatLoading}
+            context={{
+              folders,
+              files,
+              events,
+              windows,
+              openWindow
+            }}
           />
         );
       

@@ -48,6 +48,7 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import AIAutoDevelopment from './pages/AIAutoDevelopment';
+import AICollaborationHub from './pages/AICollaborationHub';
 import AIControlCenter from './pages/AIControlCenter';
 import AIEnginesList from './pages/AIEnginesList';
 import AIModelsConfig from './pages/AIModelsConfig';
@@ -64,13 +65,17 @@ import ContentVerifiers from './pages/ContentVerifiers';
 import DocumentGenerator from './pages/DocumentGenerator';
 import FileActions from './pages/FileActions';
 import GameWorldGenerator from './pages/GameWorldGenerator';
+import GrokIntegration from './pages/GrokIntegration';
 import Home from './pages/Home';
 import ImageEditor from './pages/ImageEditor';
 import ImageGenerator from './pages/ImageGenerator';
+import MathematicalVerifier from './pages/MathematicalVerifier';
 import MediaGenerator from './pages/MediaGenerator';
+import MusicGeneratorPro from './pages/MusicGeneratorPro';
 import NeuronsList from './pages/NeuronsList';
 import OSOrchestrator from './pages/OSOrchestrator';
 import OSPrincipal from './pages/OSPrincipal';
+import OSTableOfContents from './pages/OSTableOfContents';
 import PDFEditor from './pages/PDFEditor';
 import ParametersDiagram from './pages/ParametersDiagram';
 import PresentationGenerator from './pages/PresentationGenerator';
@@ -81,19 +86,15 @@ import TextEditor from './pages/TextEditor';
 import UnlimitedIQVerifier from './pages/UnlimitedIQVerifier';
 import VideoGenerator from './pages/VideoGenerator';
 import VoiceCommandsList from './pages/VoiceCommandsList';
+import VoiceSystemControl from './pages/VoiceSystemControl';
 import WindowCreator from './pages/WindowCreator';
 import WindowManager from './pages/WindowManager';
-import AICollaborationHub from './pages/AICollaborationHub';
-import VoiceSystemControl from './pages/VoiceSystemControl';
-import MusicGeneratorPro from './pages/MusicGeneratorPro';
-import MathematicalVerifier from './pages/MathematicalVerifier';
-import GrokIntegration from './pages/GrokIntegration';
-import OSTableOfContents from './pages/OSTableOfContents';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "AIAutoDevelopment": AIAutoDevelopment,
+    "AICollaborationHub": AICollaborationHub,
     "AIControlCenter": AIControlCenter,
     "AIEnginesList": AIEnginesList,
     "AIModelsConfig": AIModelsConfig,
@@ -110,13 +111,17 @@ export const PAGES = {
     "DocumentGenerator": DocumentGenerator,
     "FileActions": FileActions,
     "GameWorldGenerator": GameWorldGenerator,
+    "GrokIntegration": GrokIntegration,
     "Home": Home,
     "ImageEditor": ImageEditor,
     "ImageGenerator": ImageGenerator,
+    "MathematicalVerifier": MathematicalVerifier,
     "MediaGenerator": MediaGenerator,
+    "MusicGeneratorPro": MusicGeneratorPro,
     "NeuronsList": NeuronsList,
     "OSOrchestrator": OSOrchestrator,
     "OSPrincipal": OSPrincipal,
+    "OSTableOfContents": OSTableOfContents,
     "PDFEditor": PDFEditor,
     "ParametersDiagram": ParametersDiagram,
     "PresentationGenerator": PresentationGenerator,
@@ -127,14 +132,9 @@ export const PAGES = {
     "UnlimitedIQVerifier": UnlimitedIQVerifier,
     "VideoGenerator": VideoGenerator,
     "VoiceCommandsList": VoiceCommandsList,
+    "VoiceSystemControl": VoiceSystemControl,
     "WindowCreator": WindowCreator,
     "WindowManager": WindowManager,
-    "AICollaborationHub": AICollaborationHub,
-    "VoiceSystemControl": VoiceSystemControl,
-    "MusicGeneratorPro": MusicGeneratorPro,
-    "MathematicalVerifier": MathematicalVerifier,
-    "GrokIntegration": GrokIntegration,
-    "OSTableOfContents": OSTableOfContents,
 }
 
 export const pagesConfig = {
