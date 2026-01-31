@@ -73,6 +73,7 @@ import NeuronsList from './pages/NeuronsList';
 import ProactiveAgents from './pages/ProactiveAgents';
 import AdvancedParametersManager from './pages/AdvancedParametersManager';
 import ParametersDiagram from './pages/ParametersDiagram';
+import WindowCreator from './pages/WindowCreator';
 import __Layout from './Layout.jsx';
 
 
@@ -103,6 +104,7 @@ export const PAGES = {
     "ProactiveAgents": ProactiveAgents,
     "AdvancedParametersManager": AdvancedParametersManager,
     "ParametersDiagram": ParametersDiagram,
+    "WindowCreator": WindowCreator,
 }
 
 export const pagesConfig = {

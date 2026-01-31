@@ -31,11 +31,11 @@ import {
 
 const PINNED_APPS = [
   { id: 'chat', name: 'Assistant IA Minima-X', icon: Bot, color: '#8b5cf6' },
+  { id: 'window-creator', name: '+ Nouvelle Fenêtre', icon: Code, color: '#10b981' },
   { id: 'calendar', name: 'Calendrier', icon: Calendar, color: '#06b6d4' },
   { id: 'explorer', name: 'Explorateur Fichiers', icon: Folder, color: '#3b82f6' },
   { id: 'text-editor', name: 'Éditeur Texte IA', icon: FileText, color: '#10b981' },
   { id: 'presentation', name: 'Présentations PPT', icon: Presentation, color: '#ec4899' },
-  { id: 'document', name: 'Documents Longs', icon: FileText, color: '#06b6d4' },
 ];
 
 const ALL_APPS = [

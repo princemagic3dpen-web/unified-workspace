@@ -40,6 +40,7 @@ import GameWorldGenerator from './GameWorldGenerator';
 import ProactiveAgents from './ProactiveAgents';
 import AdvancedParametersManager from './AdvancedParametersManager';
 import ParametersDiagram from './ParametersDiagram';
+import WindowCreator from './WindowCreator';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -317,6 +318,12 @@ export default function OSPrincipal() {
         title: 'Diagramme 2D Paramètres',
         icon: Network,
         color: '#8b5cf6',
+        size: { width: 1600, height: 900 }
+      },
+      'window-creator': {
+        title: 'Créateur Fenêtres Personnalisées',
+        icon: Code,
+        color: '#10b981',
         size: { width: 1600, height: 900 }
       }
     };
@@ -733,6 +740,9 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'parameters-diagram':
         return <ParametersDiagram />;
+      
+      case 'window-creator':
+        return <WindowCreator />;
       
       default:
         return null;
