@@ -79,6 +79,7 @@ import ProactiveAgentsCreator from './pages/ProactiveAgentsCreator';
 import AutoBugDetector from './pages/AutoBugDetector';
 import ContentVerifiers from './pages/ContentVerifiers';
 import OSOrchestrator from './pages/OSOrchestrator';
+import AIToolsHub from './pages/AIToolsHub';
 import __Layout from './Layout.jsx';
 
 
@@ -115,6 +116,7 @@ export const PAGES = {
     "AutoBugDetector": AutoBugDetector,
     "ContentVerifiers": ContentVerifiers,
     "OSOrchestrator": OSOrchestrator,
+    "AIToolsHub": AIToolsHub,
 }
 
 export const pagesConfig = {

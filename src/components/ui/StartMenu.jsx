@@ -58,6 +58,7 @@ const ALL_APPS = [
   { id: 'parameters-diagram', name: 'Diagramme 2D', icon: Code, color: '#8b5cf6' },
   { id: 'voice-commands', name: 'Commandes Vocales (5000)', icon: Mic, color: '#6366f1' },
   { id: 'company-management', name: 'Gestion Entreprises', icon: Briefcase, color: '#3b82f6' },
+  { id: 'ai-tools-hub', name: 'Hub Outils IA (35+)', icon: Bot, color: '#8b5cf6' },
 ];
 
 export default function StartMenu({ 

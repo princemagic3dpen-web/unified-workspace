@@ -52,6 +52,7 @@ import ProactiveAgentsCreator from './ProactiveAgentsCreator';
 import AutoBugDetector from './AutoBugDetector';
 import ContentVerifiers from './ContentVerifiers';
 import OSOrchestrator from './OSOrchestrator';
+import AIToolsHub from './AIToolsHub';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
