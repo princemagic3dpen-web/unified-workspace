@@ -18,22 +18,37 @@ import {
   Star,
   Clock,
   FolderOpen,
-  Bot
+  Bot,
+  Code,
+  Users,
+  FlaskConical,
+  LayoutGrid,
+  List,
+  Briefcase,
+  ImagePlus
 } from 'lucide-react';
 
 const PINNED_APPS = [
+  { id: 'chat', name: 'Assistant IA Minima-X', icon: Bot, color: '#8b5cf6' },
   { id: 'calendar', name: 'Calendrier', icon: Calendar, color: '#06b6d4' },
-  { id: 'explorer', name: 'Explorateur', icon: Folder, color: '#3b82f6' },
-  { id: 'chat', name: 'Assistant IA', icon: Bot, color: '#8b5cf6' },
-  { id: 'viewer', name: 'Visionneur', icon: Image, color: '#f59e0b' },
-  { id: 'text', name: 'Éditeur Texte', icon: FileText, color: '#10b981' },
-  { id: 'presentation', name: 'Présentations', icon: Presentation, color: '#ec4899' },
+  { id: 'explorer', name: 'Explorateur Fichiers', icon: Folder, color: '#3b82f6' },
+  { id: 'text-editor', name: 'Éditeur Texte IA', icon: FileText, color: '#10b981' },
+  { id: 'presentation', name: 'Présentations PPT', icon: Presentation, color: '#ec4899' },
+  { id: 'document', name: 'Documents Longs', icon: FileText, color: '#06b6d4' },
 ];
 
 const ALL_APPS = [
   ...PINNED_APPS,
-  { id: 'video', name: 'Lecteur Vidéo', icon: Video, color: '#ef4444' },
-  { id: 'settings', name: 'Paramètres', icon: Settings, color: '#6b7280' },
+  { id: 'collaboration', name: 'Collaboration Temps Réel', icon: Users, color: '#3b82f6' },
+  { id: 'ai-development', name: 'Auto-Développement IA', icon: Code, color: '#8b5cf6' },
+  { id: 'ai-models', name: 'Configuration IA', icon: Settings, color: '#8b5cf6' },
+  { id: 'ai-testing', name: 'Test IA - Romans 500p', icon: FlaskConical, color: '#10b981' },
+  { id: 'window-manager', name: 'Gestionnaire Fenêtres', icon: LayoutGrid, color: '#8b5cf6' },
+  { id: 'system-functions', name: 'Liste Fonctionnalités', icon: List, color: '#3b82f6' },
+  { id: 'business-prep', name: 'Préparation Entreprise', icon: Briefcase, color: '#10b981' },
+  { id: 'file-actions', name: 'Actions Fichiers', icon: Folder, color: '#10b981' },
+  { id: 'pdf-editor', name: 'Éditeur PDF', icon: FilePdf, color: '#ef4444' },
+  { id: 'image-editor', name: 'Générateur Images 4K', icon: ImagePlus, color: '#f59e0b' },
 ];
 
 export default function StartMenu({ 
