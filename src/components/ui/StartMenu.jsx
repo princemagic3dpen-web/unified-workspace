@@ -52,6 +52,9 @@ const ALL_APPS = [
   { id: 'image-generator', name: 'Générateur Images 4K', icon: ImagePlus, color: '#a855f7' },
   { id: 'video-generator', name: 'Générateur Vidéos IA', icon: Video, color: '#0ea5e9' },
   { id: 'game-world-generator', name: 'Jeux & Mondes 3D', icon: Box, color: '#10b981' },
+  { id: 'proactive-agents', name: 'Agents IA Proactifs', icon: Bot, color: '#6366f1' },
+  { id: 'advanced-parameters', name: 'Paramètres Avancés', icon: Settings, color: '#3b82f6' },
+  { id: 'parameters-diagram', name: 'Diagramme 2D', icon: Code, color: '#8b5cf6' },
   { id: 'company-management', name: 'Gestion Entreprises', icon: Briefcase, color: '#3b82f6' },
 ];
 

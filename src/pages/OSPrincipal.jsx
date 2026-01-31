@@ -37,6 +37,9 @@ import CompanyManagement from './CompanyManagement';
 import ImageGenerator from './ImageGenerator';
 import VideoGenerator from './VideoGenerator';
 import GameWorldGenerator from './GameWorldGenerator';
+import ProactiveAgents from './ProactiveAgents';
+import AdvancedParametersManager from './AdvancedParametersManager';
+import ParametersDiagram from './ParametersDiagram';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -297,6 +300,24 @@ export default function OSPrincipal() {
         icon: Image,
         color: '#10b981',
         size: { width: 1400, height: 800 }
+      },
+      'proactive-agents': {
+        title: 'Agents IA Proactifs',
+        icon: Bot,
+        color: '#6366f1',
+        size: { width: 1200, height: 800 }
+      },
+      'advanced-parameters': {
+        title: 'Gestionnaire Paramètres Avancés',
+        icon: Settings,
+        color: '#3b82f6',
+        size: { width: 1400, height: 800 }
+      },
+      'parameters-diagram': {
+        title: 'Diagramme 2D Paramètres',
+        icon: Network,
+        color: '#8b5cf6',
+        size: { width: 1600, height: 900 }
       }
     };
 
@@ -703,6 +724,15 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'game-world-generator':
         return <GameWorldGenerator />;
+      
+      case 'proactive-agents':
+        return <ProactiveAgents />;
+      
+      case 'advanced-parameters':
+        return <AdvancedParametersManager />;
+      
+      case 'parameters-diagram':
+        return <ParametersDiagram />;
       
       default:
         return null;

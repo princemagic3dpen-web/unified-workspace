@@ -70,6 +70,9 @@ import GameWorldGenerator from './pages/GameWorldGenerator';
 import AIControlCenter from './pages/AIControlCenter';
 import AIEnginesList from './pages/AIEnginesList';
 import NeuronsList from './pages/NeuronsList';
+import ProactiveAgents from './pages/ProactiveAgents';
+import AdvancedParametersManager from './pages/AdvancedParametersManager';
+import ParametersDiagram from './pages/ParametersDiagram';
 import __Layout from './Layout.jsx';
 
 
@@ -97,6 +100,9 @@ export const PAGES = {
     "AIControlCenter": AIControlCenter,
     "AIEnginesList": AIEnginesList,
     "NeuronsList": NeuronsList,
+    "ProactiveAgents": ProactiveAgents,
+    "AdvancedParametersManager": AdvancedParametersManager,
+    "ParametersDiagram": ParametersDiagram,
 }
 
 export const pagesConfig = {
