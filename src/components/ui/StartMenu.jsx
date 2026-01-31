@@ -29,7 +29,8 @@ import {
   Box,
   Mic,
   Music,
-  Calculator
+  Calculator,
+  Sparkles
 } from 'lucide-react';
 
 const PINNED_APPS = [
@@ -69,6 +70,7 @@ const ALL_APPS = [
   { id: 'voice-system-control', name: 'Contrôle Vocal Système', icon: Mic, color: '#14b8a6' },
   { id: 'music-generator-pro', name: 'Générateur Musique Pro (>Suno)', icon: Music, color: '#f59e0b' },
   { id: 'mathematical-verifier', name: 'Vérificateur Mathématique QI∞', icon: Calculator, color: '#8b5cf6' },
+  { id: 'grok-integration', name: 'Grok xAI Visuels Deluxe', icon: Sparkles, color: '#ec4899' },
 ];
 
 export default function StartMenu({ 

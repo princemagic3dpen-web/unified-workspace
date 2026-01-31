@@ -60,6 +60,7 @@ import AICollaborationHub from './AICollaborationHub';
 import VoiceSystemControl from './VoiceSystemControl';
 import MusicGeneratorPro from './MusicGeneratorPro';
 import MathematicalVerifier from './MathematicalVerifier';
+import GrokIntegration from './GrokIntegration';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -847,6 +848,9 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'mathematical-verifier':
         return <MathematicalVerifier />;
+      
+      case 'grok-integration':
+        return <GrokIntegration />;
       
       default:
         return null;

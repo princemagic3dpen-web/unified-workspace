@@ -51,11 +51,16 @@ import AIAutoDevelopment from './pages/AIAutoDevelopment';
 import AIControlCenter from './pages/AIControlCenter';
 import AIEnginesList from './pages/AIEnginesList';
 import AIModelsConfig from './pages/AIModelsConfig';
+import AIOrchestrator from './pages/AIOrchestrator';
 import AITestingEnvironment from './pages/AITestingEnvironment';
+import AIToolsHub from './pages/AIToolsHub';
+import AdvancedImageGenerator from './pages/AdvancedImageGenerator';
 import AdvancedParametersManager from './pages/AdvancedParametersManager';
+import AutoBugDetector from './pages/AutoBugDetector';
 import BusinessPreparation from './pages/BusinessPreparation';
 import CollaborativeWorkspace from './pages/CollaborativeWorkspace';
 import CompanyManagement from './pages/CompanyManagement';
+import ContentVerifiers from './pages/ContentVerifiers';
 import DocumentGenerator from './pages/DocumentGenerator';
 import FileActions from './pages/FileActions';
 import GameWorldGenerator from './pages/GameWorldGenerator';
@@ -64,29 +69,25 @@ import ImageEditor from './pages/ImageEditor';
 import ImageGenerator from './pages/ImageGenerator';
 import MediaGenerator from './pages/MediaGenerator';
 import NeuronsList from './pages/NeuronsList';
+import OSOrchestrator from './pages/OSOrchestrator';
 import OSPrincipal from './pages/OSPrincipal';
 import PDFEditor from './pages/PDFEditor';
 import ParametersDiagram from './pages/ParametersDiagram';
 import PresentationGenerator from './pages/PresentationGenerator';
 import ProactiveAgents from './pages/ProactiveAgents';
+import ProactiveAgentsCreator from './pages/ProactiveAgentsCreator';
 import SystemFunctionalities from './pages/SystemFunctionalities';
 import TextEditor from './pages/TextEditor';
+import UnlimitedIQVerifier from './pages/UnlimitedIQVerifier';
 import VideoGenerator from './pages/VideoGenerator';
 import VoiceCommandsList from './pages/VoiceCommandsList';
 import WindowCreator from './pages/WindowCreator';
 import WindowManager from './pages/WindowManager';
-import ProactiveAgentsCreator from './pages/ProactiveAgentsCreator';
-import AutoBugDetector from './pages/AutoBugDetector';
-import ContentVerifiers from './pages/ContentVerifiers';
-import OSOrchestrator from './pages/OSOrchestrator';
-import AIToolsHub from './pages/AIToolsHub';
-import AIOrchestrator from './pages/AIOrchestrator';
-import UnlimitedIQVerifier from './pages/UnlimitedIQVerifier';
-import AdvancedImageGenerator from './pages/AdvancedImageGenerator';
 import AICollaborationHub from './pages/AICollaborationHub';
 import VoiceSystemControl from './pages/VoiceSystemControl';
 import MusicGeneratorPro from './pages/MusicGeneratorPro';
 import MathematicalVerifier from './pages/MathematicalVerifier';
+import GrokIntegration from './pages/GrokIntegration';
 import __Layout from './Layout.jsx';
 
 
@@ -95,11 +96,16 @@ export const PAGES = {
     "AIControlCenter": AIControlCenter,
     "AIEnginesList": AIEnginesList,
     "AIModelsConfig": AIModelsConfig,
+    "AIOrchestrator": AIOrchestrator,
     "AITestingEnvironment": AITestingEnvironment,
+    "AIToolsHub": AIToolsHub,
+    "AdvancedImageGenerator": AdvancedImageGenerator,
     "AdvancedParametersManager": AdvancedParametersManager,
+    "AutoBugDetector": AutoBugDetector,
     "BusinessPreparation": BusinessPreparation,
     "CollaborativeWorkspace": CollaborativeWorkspace,
     "CompanyManagement": CompanyManagement,
+    "ContentVerifiers": ContentVerifiers,
     "DocumentGenerator": DocumentGenerator,
     "FileActions": FileActions,
     "GameWorldGenerator": GameWorldGenerator,
@@ -108,29 +114,25 @@ export const PAGES = {
     "ImageGenerator": ImageGenerator,
     "MediaGenerator": MediaGenerator,
     "NeuronsList": NeuronsList,
+    "OSOrchestrator": OSOrchestrator,
     "OSPrincipal": OSPrincipal,
     "PDFEditor": PDFEditor,
     "ParametersDiagram": ParametersDiagram,
     "PresentationGenerator": PresentationGenerator,
     "ProactiveAgents": ProactiveAgents,
+    "ProactiveAgentsCreator": ProactiveAgentsCreator,
     "SystemFunctionalities": SystemFunctionalities,
     "TextEditor": TextEditor,
+    "UnlimitedIQVerifier": UnlimitedIQVerifier,
     "VideoGenerator": VideoGenerator,
     "VoiceCommandsList": VoiceCommandsList,
     "WindowCreator": WindowCreator,
     "WindowManager": WindowManager,
-    "ProactiveAgentsCreator": ProactiveAgentsCreator,
-    "AutoBugDetector": AutoBugDetector,
-    "ContentVerifiers": ContentVerifiers,
-    "OSOrchestrator": OSOrchestrator,
-    "AIToolsHub": AIToolsHub,
-    "AIOrchestrator": AIOrchestrator,
-    "UnlimitedIQVerifier": UnlimitedIQVerifier,
-    "AdvancedImageGenerator": AdvancedImageGenerator,
     "AICollaborationHub": AICollaborationHub,
     "VoiceSystemControl": VoiceSystemControl,
     "MusicGeneratorPro": MusicGeneratorPro,
     "MathematicalVerifier": MathematicalVerifier,
+    "GrokIntegration": GrokIntegration,
 }
 
 export const pagesConfig = {
