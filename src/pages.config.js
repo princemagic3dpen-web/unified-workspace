@@ -67,6 +67,9 @@ import WindowManager from './pages/WindowManager';
 import ImageGenerator from './pages/ImageGenerator';
 import VideoGenerator from './pages/VideoGenerator';
 import GameWorldGenerator from './pages/GameWorldGenerator';
+import AIControlCenter from './pages/AIControlCenter';
+import AIEnginesList from './pages/AIEnginesList';
+import NeuronsList from './pages/NeuronsList';
 import __Layout from './Layout.jsx';
 
 
@@ -91,6 +94,9 @@ export const PAGES = {
     "ImageGenerator": ImageGenerator,
     "VideoGenerator": VideoGenerator,
     "GameWorldGenerator": GameWorldGenerator,
+    "AIControlCenter": AIControlCenter,
+    "AIEnginesList": AIEnginesList,
+    "NeuronsList": NeuronsList,
 }
 
 export const pagesConfig = {
