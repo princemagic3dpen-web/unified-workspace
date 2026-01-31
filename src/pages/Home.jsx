@@ -31,6 +31,7 @@ import DocumentGenerator from './DocumentGenerator';
 import AITestingEnvironment from './AITestingEnvironment';
 import WindowManagerPage from './WindowManager';
 import SystemFunctionalities from './SystemFunctionalities';
+import BusinessPreparation from './BusinessPreparation';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -255,6 +256,12 @@ export default function Home() {
         icon: Bot,
         color: '#3b82f6',
         size: { width: 1000, height: 800 }
+      },
+      'business-prep': {
+        title: 'Préparation Entreprise',
+        icon: Folder,
+        color: '#10b981',
+        size: { width: 1000, height: 700 }
       }
     };
 
@@ -646,6 +653,9 @@ Liste EXACTE avec:
       
       case 'system-functions':
         return <SystemFunctionalities />;
+      
+      case 'business-prep':
+        return <BusinessPreparation />;
       
       default:
         return null;
