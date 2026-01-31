@@ -28,6 +28,9 @@ import PDFEditor from './PDFEditor';
 import ImageEditor from './ImageEditor';
 import PresentationGenerator from './PresentationGenerator';
 import DocumentGenerator from './DocumentGenerator';
+import AITestingEnvironment from './AITestingEnvironment';
+import WindowManagerPage from './WindowManager';
+import SystemFunctionalities from './SystemFunctionalities';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -234,6 +237,24 @@ export default function Home() {
         icon: FileText,
         color: '#06b6d4',
         size: { width: 1000, height: 700 }
+      },
+      'ai-testing': {
+        title: 'Test IA - Romans 500 Pages',
+        icon: FileText,
+        color: '#10b981',
+        size: { width: 1200, height: 800 }
+      },
+      'window-manager': {
+        title: 'Gestionnaire Fenêtres',
+        icon: MessageSquare,
+        color: '#8b5cf6',
+        size: { width: 1400, height: 800 }
+      },
+      'system-functions': {
+        title: 'Liste Fonctionnalités',
+        icon: Bot,
+        color: '#3b82f6',
+        size: { width: 1000, height: 800 }
       }
     };
 
@@ -616,6 +637,15 @@ Liste EXACTE avec:
       
       case 'document':
         return <DocumentGenerator />;
+      
+      case 'ai-testing':
+        return <AITestingEnvironment />;
+      
+      case 'window-manager':
+        return <WindowManagerPage />;
+      
+      case 'system-functions':
+        return <SystemFunctionalities />;
       
       default:
         return null;

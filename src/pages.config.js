@@ -57,6 +57,9 @@ import ImageEditor from './pages/ImageEditor';
 import PDFEditor from './pages/PDFEditor';
 import PresentationGenerator from './pages/PresentationGenerator';
 import TextEditor from './pages/TextEditor';
+import AITestingEnvironment from './pages/AITestingEnvironment';
+import WindowManager from './pages/WindowManager';
+import SystemFunctionalities from './pages/SystemFunctionalities';
 import __Layout from './Layout.jsx';
 
 
@@ -71,6 +74,9 @@ export const PAGES = {
     "PDFEditor": PDFEditor,
     "PresentationGenerator": PresentationGenerator,
     "TextEditor": TextEditor,
+    "AITestingEnvironment": AITestingEnvironment,
+    "WindowManager": WindowManager,
+    "SystemFunctionalities": SystemFunctionalities,
 }
 
 export const pagesConfig = {
