@@ -48,7 +48,6 @@ import AdvancedParametersManager from './AdvancedParametersManager';
 import ParametersDiagram from './ParametersDiagram';
 import WindowCreator from './WindowCreator';
 import VoiceCommandsList from './VoiceCommandsList';
-import ProactiveAgentsCreator from './ProactiveAgentsCreator';
 import AutoBugDetector from './AutoBugDetector';
 import ContentVerifiers from './ContentVerifiers';
 import OSOrchestrator from './OSOrchestrator';
@@ -836,9 +835,6 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'advanced-image-gen':
         return <AdvancedImageGenerator />;
-      
-      case 'proactive-agents-creator':
-        return <ProactiveAgentsCreator />;
       
       case 'ai-collaboration-hub':
         return <AICollaborationHub />;
