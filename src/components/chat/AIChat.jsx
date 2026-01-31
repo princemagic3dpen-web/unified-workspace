@@ -57,6 +57,15 @@ export default function AIChat({
     setTimeout(() => setCopiedId(null), 2000);
   };
 
+  const handleVoiceTranscription = (transcription) => {
+    setTranscriptions(prev => [transcription, ...prev.slice(0, 99)]);
+    
+    // Si c'est une personne qui parle, envoyer automatiquement le message
+    if (transcription.speaker_type === 'human' && transcription.text.trim()) {
+      onSendMessage(transcription.text);
+    }
+  };
+
   const quickActions = [
     { icon: FileText, label: 'Créer 50 fichiers', prompt: 'Crée une structure complète de projet avec 50+ fichiers organisés en dossiers pour ' },
     { icon: Sparkles, label: 'Document 100 pages', prompt: 'Génère un document complet de 100 pages avec introduction, développement détaillé et conclusion sur ' },
