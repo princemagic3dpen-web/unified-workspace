@@ -19,6 +19,15 @@ import EventModal from '../components/calendar/EventModal';
 import FileExplorer from '../components/explorer/FileExplorer';
 import MediaViewer from '../components/viewer/MediaViewer';
 import AIChat from '../components/chat/AIChat';
+import CollaborativeWorkspace from './CollaborativeWorkspace';
+import AIAutoDevelopment from './AIAutoDevelopment';
+import AIModelsConfig from './AIModelsConfig';
+import FileActions from './FileActions';
+import TextEditor from './TextEditor';
+import PDFEditor from './PDFEditor';
+import ImageEditor from './ImageEditor';
+import PresentationGenerator from './PresentationGenerator';
+import DocumentGenerator from './DocumentGenerator';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -170,6 +179,60 @@ export default function Home() {
         icon: FileText,
         color: '#10b981',
         size: { width: 700, height: 500 }
+      },
+      collaboration: {
+        title: 'Collaboration Temps Réel',
+        icon: MessageSquare,
+        color: '#3b82f6',
+        size: { width: 1000, height: 700 }
+      },
+      'ai-development': {
+        title: 'Auto-Développement IA',
+        icon: Bot,
+        color: '#8b5cf6',
+        size: { width: 1000, height: 700 }
+      },
+      'ai-models': {
+        title: 'Configuration IA',
+        icon: Bot,
+        color: '#8b5cf6',
+        size: { width: 900, height: 700 }
+      },
+      'file-actions': {
+        title: 'Actions Fichiers',
+        icon: Folder,
+        color: '#10b981',
+        size: { width: 900, height: 700 }
+      },
+      'text-editor': {
+        title: 'Éditeur Texte IA',
+        icon: FileText,
+        color: '#10b981',
+        size: { width: 1000, height: 700 }
+      },
+      'pdf-editor': {
+        title: 'Éditeur PDF',
+        icon: FileText,
+        color: '#ef4444',
+        size: { width: 1000, height: 700 }
+      },
+      'image-editor': {
+        title: 'Générateur Images 4K',
+        icon: Image,
+        color: '#f59e0b',
+        size: { width: 1000, height: 700 }
+      },
+      presentation: {
+        title: 'Présentations PowerPoint',
+        icon: FileText,
+        color: '#f59e0b',
+        size: { width: 1000, height: 700 }
+      },
+      document: {
+        title: 'Documents Longs',
+        icon: FileText,
+        color: '#06b6d4',
+        size: { width: 1000, height: 700 }
       }
     };
 
@@ -525,6 +588,33 @@ Liste EXACTE avec:
             isLoading={chatLoading}
           />
         );
+      
+      case 'collaboration':
+        return <CollaborativeWorkspace />;
+      
+      case 'ai-development':
+        return <AIAutoDevelopment />;
+      
+      case 'ai-models':
+        return <AIModelsConfig />;
+      
+      case 'file-actions':
+        return <FileActions />;
+      
+      case 'text-editor':
+        return <TextEditor />;
+      
+      case 'pdf-editor':
+        return <PDFEditor />;
+      
+      case 'image-editor':
+        return <ImageEditor />;
+      
+      case 'presentation':
+        return <PresentationGenerator />;
+      
+      case 'document':
+        return <DocumentGenerator />;
       
       default:
         return null;

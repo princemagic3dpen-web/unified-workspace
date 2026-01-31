@@ -55,6 +55,8 @@ import PDFEditor from './pages/PDFEditor';
 import ImageEditor from './pages/ImageEditor';
 import PresentationGenerator from './pages/PresentationGenerator';
 import DocumentGenerator from './pages/DocumentGenerator';
+import CollaborativeWorkspace from './pages/CollaborativeWorkspace';
+import AIAutoDevelopment from './pages/AIAutoDevelopment';
 import __Layout from './Layout.jsx';
 
 
@@ -67,6 +69,8 @@ export const PAGES = {
     "ImageEditor": ImageEditor,
     "PresentationGenerator": PresentationGenerator,
     "DocumentGenerator": DocumentGenerator,
+    "CollaborativeWorkspace": CollaborativeWorkspace,
+    "AIAutoDevelopment": AIAutoDevelopment,
 }
 
 export const pagesConfig = {
