@@ -8,7 +8,10 @@ import {
   MessageSquare, 
   Bot,
   Image,
-  FileText
+  FileText,
+  Settings,
+  Network,
+  Code
 } from 'lucide-react';
 
 import WindowManager from '../components/ui/WindowManager';
