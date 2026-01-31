@@ -30,7 +30,9 @@ import {
   Mic,
   Music,
   Calculator,
-  Sparkles
+  Sparkles,
+  Book,
+  Brain
 } from 'lucide-react';
 
 const PINNED_APPS = [
@@ -71,6 +73,8 @@ const ALL_APPS = [
   { id: 'music-generator-pro', name: 'Générateur Musique Pro (>Suno)', icon: Music, color: '#f59e0b' },
   { id: 'mathematical-verifier', name: 'Vérificateur Mathématique QI∞', icon: Calculator, color: '#8b5cf6' },
   { id: 'grok-integration', name: 'Grok xAI Visuels Deluxe', icon: Sparkles, color: '#ec4899' },
+  { id: 'table-of-contents', name: 'Table Matières OS Complète', icon: Book, color: '#6366f1' },
+  { id: 'ai-control-center', name: 'Centre Contrôle IA 500+', icon: Brain, color: '#8b5cf6' },
 ];
 
 export default function StartMenu({ 

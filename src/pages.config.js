@@ -88,6 +88,7 @@ import VoiceSystemControl from './pages/VoiceSystemControl';
 import MusicGeneratorPro from './pages/MusicGeneratorPro';
 import MathematicalVerifier from './pages/MathematicalVerifier';
 import GrokIntegration from './pages/GrokIntegration';
+import OSTableOfContents from './pages/OSTableOfContents';
 import __Layout from './Layout.jsx';
 
 
@@ -133,6 +134,7 @@ export const PAGES = {
     "MusicGeneratorPro": MusicGeneratorPro,
     "MathematicalVerifier": MathematicalVerifier,
     "GrokIntegration": GrokIntegration,
+    "OSTableOfContents": OSTableOfContents,
 }
 
 export const pagesConfig = {

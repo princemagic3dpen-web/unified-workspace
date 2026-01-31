@@ -61,6 +61,8 @@ import VoiceSystemControl from './VoiceSystemControl';
 import MusicGeneratorPro from './MusicGeneratorPro';
 import MathematicalVerifier from './MathematicalVerifier';
 import GrokIntegration from './GrokIntegration';
+import OSTableOfContents from './OSTableOfContents';
+import AIControlCenter from './AIControlCenter';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -388,6 +390,18 @@ export default function OSPrincipal() {
         icon: Bot,
         color: '#8b5cf6',
         size: { width: 1200, height: 800 }
+      },
+      'table-of-contents': {
+        title: 'Table des Matières OS Complète',
+        icon: FileText,
+        color: '#6366f1',
+        size: { width: 1400, height: 900 }
+      },
+      'ai-control-center': {
+        title: 'Centre Contrôle IA - 500+ Modèles',
+        icon: Bot,
+        color: '#8b5cf6',
+        size: { width: 1600, height: 900 }
       }
     };
 
@@ -851,6 +865,12 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'grok-integration':
         return <GrokIntegration />;
+      
+      case 'table-of-contents':
+        return <OSTableOfContents />;
+      
+      case 'ai-control-center':
+        return <AIControlCenter />;
       
       default:
         return null;
