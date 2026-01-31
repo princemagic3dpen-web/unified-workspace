@@ -47,7 +47,7 @@ const ALL_APPS = [
   { id: 'system-functions', name: 'Liste Fonctionnalités', icon: List, color: '#3b82f6' },
   { id: 'business-prep', name: 'Préparation Entreprise', icon: Briefcase, color: '#10b981' },
   { id: 'file-actions', name: 'Actions Fichiers', icon: Folder, color: '#10b981' },
-  { id: 'pdf-editor', name: 'Éditeur PDF', icon: FilePdf, color: '#ef4444' },
+  { id: 'pdf-editor', name: 'Éditeur PDF', icon: FileText, color: '#ef4444' },
   { id: 'image-editor', name: 'Générateur Images 4K', icon: ImagePlus, color: '#f59e0b' },
 ];
 
