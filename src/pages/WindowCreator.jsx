@@ -9,7 +9,7 @@ import { Code, Plus, Play, Trash2, Save, Edit } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 
-export default function WindowCreator() {
+export default function WindowCreator({ onOpenWindow }) {
   const [mode, setMode] = useState('developer'); // 'developer' ou 'functional'
   const [currentWindow, setCurrentWindow] = useState({
     title: '',
@@ -265,14 +265,26 @@ toast.success('Programmation ${index + 1} exécutée!');
                         ))}
                       </div>
 
-                      <Button
-                        onClick={() => executeWindow(window)}
-                        className="w-full bg-green-600 hover:bg-green-700"
-                        size="sm"
-                      >
-                        <Play className="w-4 h-4 mr-2" />
-                        Exécuter
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={() => executeWindow(window)}
+                          className="flex-1 bg-green-600 hover:bg-green-700"
+                          size="sm"
+                        >
+                          <Play className="w-4 h-4 mr-2" />
+                          Exécuter
+                        </Button>
+                        
+                        {onOpenWindow && (
+                          <Button
+                            onClick={() => onOpenWindow('custom-window', window)}
+                            className="flex-1 bg-indigo-600 hover:bg-indigo-700"
+                            size="sm"
+                          >
+                            Exécuter Fenêtre
+                          </Button>
+                        )}
+                      </div>
                     </Card>
                   ))}
                 </div>

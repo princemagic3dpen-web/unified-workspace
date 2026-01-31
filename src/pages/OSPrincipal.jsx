@@ -46,6 +46,7 @@ import AdvancedParametersManager from './AdvancedParametersManager';
 import ParametersDiagram from './ParametersDiagram';
 import WindowCreator from './WindowCreator';
 import VoiceCommandsList from './VoiceCommandsList';
+import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -330,6 +331,12 @@ export default function OSPrincipal() {
         icon: Code,
         color: '#10b981',
         size: { width: 1600, height: 900 }
+      },
+      'custom-window': {
+        title: data?.title || 'Fenêtre Personnalisée',
+        icon: Code,
+        color: '#10b981',
+        size: { width: 1000, height: 700 }
       },
       'voice-commands': {
         title: 'Commandes Vocales - 5000 Disponibles',
@@ -753,7 +760,10 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
         return <ParametersDiagram />;
       
       case 'window-creator':
-        return <WindowCreator />;
+        return <WindowCreator onOpenWindow={openWindow} />;
+      
+      case 'custom-window':
+        return <CustomWindowRunner windowData={window.data} />;
       
       case 'voice-commands':
         return <VoiceCommandsList />;
