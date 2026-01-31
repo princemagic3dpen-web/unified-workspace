@@ -21,6 +21,8 @@ import ReactMarkdown from 'react-markdown';
 import { base44 } from '@/api/base44Client';
 import VoiceTranscription from './VoiceTranscription';
 import TasksPanel from './TasksPanel';
+import { useVoiceEngine, VOICE_EMOTIONS } from '../ai/VoiceEngine';
+import { intelligenceEngine } from '../ai/IntelligenceEngine';
 
 export default function AIChat({ 
   conversations = [],
@@ -37,9 +39,13 @@ export default function AIChat({
   const [copiedId, setCopiedId] = useState(null);
   const [humanTranscriptions, setHumanTranscriptions] = useState([]);
   const [aiTranscriptions, setAiTranscriptions] = useState([]);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const scrollRef = useRef(null);
   const scrollRef2 = useRef(null);
   const inputRef = useRef(null);
+  
+  // Moteurs IA
+  const { speak, stopSpeaking, isAvailable: voiceAvailable } = useVoiceEngine();
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -78,7 +84,7 @@ export default function AIChat({
     }
   };
 
-  // Ajouter les réponses IA aux transcriptions
+  // Ajouter les réponses IA aux transcriptions + PARLER VOCALEMENT
   useEffect(() => {
     if (currentConversation?.messages) {
       const aiMessages = currentConversation.messages
@@ -89,9 +95,68 @@ export default function AIChat({
           timestamp: m.timestamp || new Date().toISOString(),
           conversation_id: currentConversation.id
         }));
+      
       setAiTranscriptions(aiMessages);
+      
+      // PARLER la dernière réponse automatiquement
+      if (aiMessages.length > 0 && voiceAvailable) {
+        const lastMessage = aiMessages[aiMessages.length - 1];
+        speakAIResponse(lastMessage.text);
+      }
     }
   }, [currentConversation]);
+
+  // Fonction pour faire parler l'IA
+  const speakAIResponse = async (text) => {
+    if (!voiceAvailable || isSpeaking) return;
+    
+    setIsSpeaking(true);
+    try {
+      // Voix professionnelle français
+      await speak(text, {
+        ...VOICE_EMOTIONS.professional,
+        rate: 1.1,
+        pitch: 1.0,
+        volume: 1.0
+      });
+      
+      // Sauvegarder vocalement
+      await base44.entities.VoiceTranscription.create({
+        speaker_type: 'ai',
+        text: text,
+        timestamp: new Date().toISOString(),
+        conversation_id: currentConversation?.id
+      });
+    } catch (error) {
+      console.error('Erreur synthèse vocale:', error);
+    }
+    setIsSpeaking(false);
+  };
+
+  // Sauvegarde intelligente automatique
+  const handleSaveIntelligently = async () => {
+    if (!currentConversation) return;
+    
+    try {
+      const result = await intelligenceEngine.saveConversationIntelligently(
+        currentConversation,
+        { folders: [], files: [], events: [] }
+      );
+      
+      if (result.success) {
+        console.log('✅ Conversation sauvegardée:', result.fileName);
+      }
+    } catch (error) {
+      console.error('Erreur sauvegarde:', error);
+    }
+  };
+
+  // Auto-save après chaque message
+  useEffect(() => {
+    if (currentConversation?.messages?.length > 0) {
+      handleSaveIntelligently();
+    }
+  }, [currentConversation?.messages?.length]);
 
   return (
     <>
@@ -233,6 +298,12 @@ export default function AIChat({
             <div className="p-3 bg-purple-100 border-b border-purple-300 flex items-center gap-2">
               <Bot className="w-5 h-5 text-purple-700" />
               <h3 className="font-bold text-purple-900">🤖 Réponses Intelligence Artificielle</h3>
+              {isSpeaking && (
+                <div className="flex items-center gap-1 text-xs text-purple-700">
+                  <Sparkles className="w-3 h-3 animate-pulse" />
+                  <span>Parle...</span>
+                </div>
+              )}
               <span className="ml-auto text-xs text-purple-700">{aiTranscriptions.length} réponses</span>
             </div>
             
