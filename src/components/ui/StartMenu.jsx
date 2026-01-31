@@ -75,6 +75,7 @@ const ALL_APPS = [
   { id: 'grok-integration', name: 'Grok xAI Visuels Deluxe', icon: Sparkles, color: '#ec4899' },
   { id: 'table-of-contents', name: 'Table Matières OS Complète', icon: Book, color: '#6366f1' },
   { id: 'ai-control-center', name: 'Centre Contrôle IA 500+', icon: Brain, color: '#8b5cf6' },
+  { id: 'ai-conversations-advanced', name: 'Conversations IA QI∞ Avancées', icon: MessageSquare, color: '#a855f7' },
 ];
 
 export default function StartMenu({ 

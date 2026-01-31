@@ -63,6 +63,7 @@ import MathematicalVerifier from './MathematicalVerifier';
 import GrokIntegration from './GrokIntegration';
 import OSTableOfContents from './OSTableOfContents';
 import AIControlCenter from './AIControlCenter';
+import AIConversationsAdvanced from './AIConversationsAdvanced';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -402,6 +403,13 @@ export default function OSPrincipal() {
         icon: Bot,
         color: '#8b5cf6',
         size: { width: 1600, height: 900 }
+      },
+      'ai-conversations-advanced': {
+        title: 'Conversations IA Avancées QI∞',
+        icon: MessageSquare,
+        color: '#a855f7',
+        size: { width: 1600, height: 900 },
+        maximized: true
       }
     };
 
@@ -937,6 +945,9 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'ai-control-center':
         return <AIControlCenter />;
+      
+      case 'ai-conversations-advanced':
+        return <AIConversationsAdvanced />;
       
       default:
         return null;

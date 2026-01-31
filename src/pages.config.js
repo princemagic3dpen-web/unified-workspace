@@ -89,6 +89,7 @@ import VoiceCommandsList from './pages/VoiceCommandsList';
 import VoiceSystemControl from './pages/VoiceSystemControl';
 import WindowCreator from './pages/WindowCreator';
 import WindowManager from './pages/WindowManager';
+import AIConversationsAdvanced from './pages/AIConversationsAdvanced';
 import __Layout from './Layout.jsx';
 
 
@@ -135,6 +136,7 @@ export const PAGES = {
     "VoiceSystemControl": VoiceSystemControl,
     "WindowCreator": WindowCreator,
     "WindowManager": WindowManager,
+    "AIConversationsAdvanced": AIConversationsAdvanced,
 }
 
 export const pagesConfig = {
