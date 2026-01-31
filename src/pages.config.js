@@ -48,65 +48,65 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import AIAutoDevelopment from './pages/AIAutoDevelopment';
+import AIControlCenter from './pages/AIControlCenter';
+import AIEnginesList from './pages/AIEnginesList';
 import AIModelsConfig from './pages/AIModelsConfig';
 import AITestingEnvironment from './pages/AITestingEnvironment';
+import AdvancedParametersManager from './pages/AdvancedParametersManager';
 import BusinessPreparation from './pages/BusinessPreparation';
 import CollaborativeWorkspace from './pages/CollaborativeWorkspace';
 import CompanyManagement from './pages/CompanyManagement';
 import DocumentGenerator from './pages/DocumentGenerator';
 import FileActions from './pages/FileActions';
+import GameWorldGenerator from './pages/GameWorldGenerator';
 import Home from './pages/Home';
 import ImageEditor from './pages/ImageEditor';
+import ImageGenerator from './pages/ImageGenerator';
 import MediaGenerator from './pages/MediaGenerator';
+import NeuronsList from './pages/NeuronsList';
 import OSPrincipal from './pages/OSPrincipal';
 import PDFEditor from './pages/PDFEditor';
+import ParametersDiagram from './pages/ParametersDiagram';
 import PresentationGenerator from './pages/PresentationGenerator';
+import ProactiveAgents from './pages/ProactiveAgents';
 import SystemFunctionalities from './pages/SystemFunctionalities';
 import TextEditor from './pages/TextEditor';
-import WindowManager from './pages/WindowManager';
-import ImageGenerator from './pages/ImageGenerator';
 import VideoGenerator from './pages/VideoGenerator';
-import GameWorldGenerator from './pages/GameWorldGenerator';
-import AIControlCenter from './pages/AIControlCenter';
-import AIEnginesList from './pages/AIEnginesList';
-import NeuronsList from './pages/NeuronsList';
-import ProactiveAgents from './pages/ProactiveAgents';
-import AdvancedParametersManager from './pages/AdvancedParametersManager';
-import ParametersDiagram from './pages/ParametersDiagram';
-import WindowCreator from './pages/WindowCreator';
 import VoiceCommandsList from './pages/VoiceCommandsList';
+import WindowCreator from './pages/WindowCreator';
+import WindowManager from './pages/WindowManager';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "AIAutoDevelopment": AIAutoDevelopment,
+    "AIControlCenter": AIControlCenter,
+    "AIEnginesList": AIEnginesList,
     "AIModelsConfig": AIModelsConfig,
     "AITestingEnvironment": AITestingEnvironment,
+    "AdvancedParametersManager": AdvancedParametersManager,
     "BusinessPreparation": BusinessPreparation,
     "CollaborativeWorkspace": CollaborativeWorkspace,
     "CompanyManagement": CompanyManagement,
     "DocumentGenerator": DocumentGenerator,
     "FileActions": FileActions,
+    "GameWorldGenerator": GameWorldGenerator,
     "Home": Home,
     "ImageEditor": ImageEditor,
+    "ImageGenerator": ImageGenerator,
     "MediaGenerator": MediaGenerator,
+    "NeuronsList": NeuronsList,
     "OSPrincipal": OSPrincipal,
     "PDFEditor": PDFEditor,
+    "ParametersDiagram": ParametersDiagram,
     "PresentationGenerator": PresentationGenerator,
+    "ProactiveAgents": ProactiveAgents,
     "SystemFunctionalities": SystemFunctionalities,
     "TextEditor": TextEditor,
-    "WindowManager": WindowManager,
-    "ImageGenerator": ImageGenerator,
     "VideoGenerator": VideoGenerator,
-    "GameWorldGenerator": GameWorldGenerator,
-    "AIControlCenter": AIControlCenter,
-    "AIEnginesList": AIEnginesList,
-    "NeuronsList": NeuronsList,
-    "ProactiveAgents": ProactiveAgents,
-    "AdvancedParametersManager": AdvancedParametersManager,
-    "ParametersDiagram": ParametersDiagram,
-    "WindowCreator": WindowCreator,
     "VoiceCommandsList": VoiceCommandsList,
+    "WindowCreator": WindowCreator,
+    "WindowManager": WindowManager,
 }
 
 export const pagesConfig = {

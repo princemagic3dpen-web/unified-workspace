@@ -35,8 +35,8 @@ export default function CustomWindowRunner({ windowData }) {
   }, []);
 
   return (
-    <div className="h-full bg-gradient-to-br from-slate-900/95 via-emerald-900/95 to-slate-900/95 backdrop-blur-xl p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="h-full w-full bg-gradient-to-br from-slate-900/95 via-emerald-900/95 to-slate-900/95 backdrop-blur-xl overflow-auto">
+      <div className="max-w-4xl mx-auto p-6">
         <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 p-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
@@ -57,7 +57,7 @@ export default function CustomWindowRunner({ windowData }) {
             </Button>
           </div>
 
-          <ScrollArea className="h-[500px]">
+          <ScrollArea className="h-[500px] w-full">
             <div className="space-y-3">
               {windowData.programmations.map((prog) => (
                 <Card key={prog.id} className="bg-slate-900/50 p-4 border-slate-700">
