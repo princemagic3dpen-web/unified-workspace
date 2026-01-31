@@ -59,6 +59,9 @@ const ALL_APPS = [
   { id: 'voice-commands', name: 'Commandes Vocales (5000)', icon: Mic, color: '#6366f1' },
   { id: 'company-management', name: 'Gestion Entreprises', icon: Briefcase, color: '#3b82f6' },
   { id: 'ai-tools-hub', name: 'Hub Outils IA (35+)', icon: Bot, color: '#8b5cf6' },
+  { id: 'ai-orchestrator', name: 'Orchestrateur IA QI∞', icon: Settings, color: '#a855f7' },
+  { id: 'unlimited-iq-verifier', name: 'Vérificateur QI Illimité', icon: Bot, color: '#6366f1' },
+  { id: 'advanced-image-gen', name: 'Générateur Images 350+ Styles', icon: ImagePlus, color: '#ec4899' },
 ];
 
 export default function StartMenu({ 

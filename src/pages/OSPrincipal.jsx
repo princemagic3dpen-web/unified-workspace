@@ -53,6 +53,9 @@ import AutoBugDetector from './AutoBugDetector';
 import ContentVerifiers from './ContentVerifiers';
 import OSOrchestrator from './OSOrchestrator';
 import AIToolsHub from './AIToolsHub';
+import AIOrchestrator from './AIOrchestrator';
+import UnlimitedIQVerifier from './UnlimitedIQVerifier';
+import AdvancedImageGenerator from './AdvancedImageGenerator';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -819,6 +822,15 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'ai-tools-hub':
         return <AIToolsHub />;
+      
+      case 'ai-orchestrator':
+        return <AIOrchestrator />;
+      
+      case 'unlimited-iq-verifier':
+        return <UnlimitedIQVerifier />;
+      
+      case 'advanced-image-gen':
+        return <AdvancedImageGenerator />;
       
       default:
         return null;

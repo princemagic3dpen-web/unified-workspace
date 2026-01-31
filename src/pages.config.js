@@ -80,6 +80,9 @@ import AutoBugDetector from './pages/AutoBugDetector';
 import ContentVerifiers from './pages/ContentVerifiers';
 import OSOrchestrator from './pages/OSOrchestrator';
 import AIToolsHub from './pages/AIToolsHub';
+import AIOrchestrator from './pages/AIOrchestrator';
+import UnlimitedIQVerifier from './pages/UnlimitedIQVerifier';
+import AdvancedImageGenerator from './pages/AdvancedImageGenerator';
 import __Layout from './Layout.jsx';
 
 
@@ -117,6 +120,9 @@ export const PAGES = {
     "ContentVerifiers": ContentVerifiers,
     "OSOrchestrator": OSOrchestrator,
     "AIToolsHub": AIToolsHub,
+    "AIOrchestrator": AIOrchestrator,
+    "UnlimitedIQVerifier": UnlimitedIQVerifier,
+    "AdvancedImageGenerator": AdvancedImageGenerator,
 }
 
 export const pagesConfig = {
