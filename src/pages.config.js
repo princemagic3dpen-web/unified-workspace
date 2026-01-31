@@ -83,6 +83,10 @@ import AIToolsHub from './pages/AIToolsHub';
 import AIOrchestrator from './pages/AIOrchestrator';
 import UnlimitedIQVerifier from './pages/UnlimitedIQVerifier';
 import AdvancedImageGenerator from './pages/AdvancedImageGenerator';
+import AICollaborationHub from './pages/AICollaborationHub';
+import VoiceSystemControl from './pages/VoiceSystemControl';
+import MusicGeneratorPro from './pages/MusicGeneratorPro';
+import MathematicalVerifier from './pages/MathematicalVerifier';
 import __Layout from './Layout.jsx';
 
 
@@ -123,6 +127,10 @@ export const PAGES = {
     "AIOrchestrator": AIOrchestrator,
     "UnlimitedIQVerifier": UnlimitedIQVerifier,
     "AdvancedImageGenerator": AdvancedImageGenerator,
+    "AICollaborationHub": AICollaborationHub,
+    "VoiceSystemControl": VoiceSystemControl,
+    "MusicGeneratorPro": MusicGeneratorPro,
+    "MathematicalVerifier": MathematicalVerifier,
 }
 
 export const pagesConfig = {

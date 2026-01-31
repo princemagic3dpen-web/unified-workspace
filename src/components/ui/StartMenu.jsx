@@ -62,6 +62,11 @@ const ALL_APPS = [
   { id: 'ai-orchestrator', name: 'Orchestrateur IA QI∞', icon: Settings, color: '#a855f7' },
   { id: 'unlimited-iq-verifier', name: 'Vérificateur QI Illimité', icon: Bot, color: '#6366f1' },
   { id: 'advanced-image-gen', name: 'Générateur Images 350+ Styles', icon: ImagePlus, color: '#ec4899' },
+  { id: 'proactive-agents-creator', name: 'Créateur Agents Proactifs', icon: Bot, color: '#06b6d4' },
+  { id: 'ai-collaboration-hub', name: 'Hub Confirmations IA', icon: Users, color: '#10b981' },
+  { id: 'voice-system-control', name: 'Contrôle Vocal Système', icon: Mic, color: '#14b8a6' },
+  { id: 'music-generator-pro', name: 'Générateur Musique Pro (>Suno)', icon: Music, color: '#f59e0b' },
+  { id: 'mathematical-verifier', name: 'Vérificateur Mathématique QI∞', icon: Calculator, color: '#8b5cf6' },
 ];
 
 export default function StartMenu({ 

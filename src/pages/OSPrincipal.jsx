@@ -56,6 +56,11 @@ import AIToolsHub from './AIToolsHub';
 import AIOrchestrator from './AIOrchestrator';
 import UnlimitedIQVerifier from './UnlimitedIQVerifier';
 import AdvancedImageGenerator from './AdvancedImageGenerator';
+import ProactiveAgentsCreator from './ProactiveAgentsCreator';
+import AICollaborationHub from './AICollaborationHub';
+import VoiceSystemControl from './VoiceSystemControl';
+import MusicGeneratorPro from './MusicGeneratorPro';
+import MathematicalVerifier from './MathematicalVerifier';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -831,6 +836,21 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'advanced-image-gen':
         return <AdvancedImageGenerator />;
+      
+      case 'proactive-agents-creator':
+        return <ProactiveAgentsCreator />;
+      
+      case 'ai-collaboration-hub':
+        return <AICollaborationHub />;
+      
+      case 'voice-system-control':
+        return <VoiceSystemControl />;
+      
+      case 'music-generator-pro':
+        return <MusicGeneratorPro />;
+      
+      case 'mathematical-verifier':
+        return <MathematicalVerifier />;
       
       default:
         return null;
