@@ -374,6 +374,12 @@ export default function OSPrincipal() {
         icon: Settings,
         color: '#06b6d4',
         size: { width: 1600, height: 900 }
+      },
+      'ai-tools-hub': {
+        title: 'Hub Outils IA - 35+ Outils',
+        icon: Bot,
+        color: '#8b5cf6',
+        size: { width: 1200, height: 800 }
       }
     };
 
@@ -810,6 +816,9 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'os-orchestrator':
         return <OSOrchestrator />;
+      
+      case 'ai-tools-hub':
+        return <AIToolsHub />;
       
       default:
         return null;
