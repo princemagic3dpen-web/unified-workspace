@@ -25,7 +25,8 @@ import {
   LayoutGrid,
   List,
   Briefcase,
-  ImagePlus
+  ImagePlus,
+  Box
 } from 'lucide-react';
 
 const PINNED_APPS = [
@@ -48,8 +49,9 @@ const ALL_APPS = [
   { id: 'business-prep', name: 'Préparation Entreprise', icon: Briefcase, color: '#10b981' },
   { id: 'file-actions', name: 'Actions Fichiers', icon: Folder, color: '#10b981' },
   { id: 'pdf-editor', name: 'Éditeur PDF', icon: FileText, color: '#ef4444' },
-  { id: 'image-editor', name: 'Générateur Images 4K', icon: ImagePlus, color: '#f59e0b' },
-  { id: 'media-generator', name: 'Générateur Média IA', icon: Presentation, color: '#ec4899' },
+  { id: 'image-generator', name: 'Générateur Images 4K', icon: ImagePlus, color: '#a855f7' },
+  { id: 'video-generator', name: 'Générateur Vidéos IA', icon: Video, color: '#0ea5e9' },
+  { id: 'game-world-generator', name: 'Jeux & Mondes 3D', icon: Box, color: '#10b981' },
   { id: 'company-management', name: 'Gestion Entreprises', icon: Briefcase, color: '#3b82f6' },
 ];
 

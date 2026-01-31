@@ -34,6 +34,9 @@ import SystemFunctionalities from './SystemFunctionalities';
 import BusinessPreparation from './BusinessPreparation';
 import MediaGenerator from './MediaGenerator';
 import CompanyManagement from './CompanyManagement';
+import ImageGenerator from './ImageGenerator';
+import VideoGenerator from './VideoGenerator';
+import GameWorldGenerator from './GameWorldGenerator';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -276,6 +279,24 @@ export default function OSPrincipal() {
         icon: Folder,
         color: '#3b82f6',
         size: { width: 1200, height: 800 }
+      },
+      'image-generator': {
+        title: 'Générateur Images 4K',
+        icon: Image,
+        color: '#a855f7',
+        size: { width: 1400, height: 800 }
+      },
+      'video-generator': {
+        title: 'Générateur Vidéos IA',
+        icon: Image,
+        color: '#0ea5e9',
+        size: { width: 1400, height: 800 }
+      },
+      'game-world-generator': {
+        title: 'Générateur Jeux & Mondes 3D',
+        icon: Image,
+        color: '#10b981',
+        size: { width: 1400, height: 800 }
       }
     };
 
@@ -673,6 +694,15 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'company-management':
         return <CompanyManagement />;
+      
+      case 'image-generator':
+        return <ImageGenerator />;
+      
+      case 'video-generator':
+        return <VideoGenerator />;
+      
+      case 'game-world-generator':
+        return <GameWorldGenerator />;
       
       default:
         return null;

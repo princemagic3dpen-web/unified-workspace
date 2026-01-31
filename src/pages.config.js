@@ -49,42 +49,48 @@
  */
 import AIAutoDevelopment from './pages/AIAutoDevelopment';
 import AIModelsConfig from './pages/AIModelsConfig';
+import AITestingEnvironment from './pages/AITestingEnvironment';
+import BusinessPreparation from './pages/BusinessPreparation';
 import CollaborativeWorkspace from './pages/CollaborativeWorkspace';
+import CompanyManagement from './pages/CompanyManagement';
 import DocumentGenerator from './pages/DocumentGenerator';
 import FileActions from './pages/FileActions';
 import Home from './pages/Home';
 import ImageEditor from './pages/ImageEditor';
+import MediaGenerator from './pages/MediaGenerator';
+import OSPrincipal from './pages/OSPrincipal';
 import PDFEditor from './pages/PDFEditor';
 import PresentationGenerator from './pages/PresentationGenerator';
-import TextEditor from './pages/TextEditor';
-import AITestingEnvironment from './pages/AITestingEnvironment';
-import WindowManager from './pages/WindowManager';
 import SystemFunctionalities from './pages/SystemFunctionalities';
-import BusinessPreparation from './pages/BusinessPreparation';
-import MediaGenerator from './pages/MediaGenerator';
-import CompanyManagement from './pages/CompanyManagement';
-import OSPrincipal from './pages/OSPrincipal';
+import TextEditor from './pages/TextEditor';
+import WindowManager from './pages/WindowManager';
+import ImageGenerator from './pages/ImageGenerator';
+import VideoGenerator from './pages/VideoGenerator';
+import GameWorldGenerator from './pages/GameWorldGenerator';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "AIAutoDevelopment": AIAutoDevelopment,
     "AIModelsConfig": AIModelsConfig,
+    "AITestingEnvironment": AITestingEnvironment,
+    "BusinessPreparation": BusinessPreparation,
     "CollaborativeWorkspace": CollaborativeWorkspace,
+    "CompanyManagement": CompanyManagement,
     "DocumentGenerator": DocumentGenerator,
     "FileActions": FileActions,
     "Home": Home,
     "ImageEditor": ImageEditor,
+    "MediaGenerator": MediaGenerator,
+    "OSPrincipal": OSPrincipal,
     "PDFEditor": PDFEditor,
     "PresentationGenerator": PresentationGenerator,
-    "TextEditor": TextEditor,
-    "AITestingEnvironment": AITestingEnvironment,
-    "WindowManager": WindowManager,
     "SystemFunctionalities": SystemFunctionalities,
-    "BusinessPreparation": BusinessPreparation,
-    "MediaGenerator": MediaGenerator,
-    "CompanyManagement": CompanyManagement,
-    "OSPrincipal": OSPrincipal,
+    "TextEditor": TextEditor,
+    "WindowManager": WindowManager,
+    "ImageGenerator": ImageGenerator,
+    "VideoGenerator": VideoGenerator,
+    "GameWorldGenerator": GameWorldGenerator,
 }
 
 export const pagesConfig = {
