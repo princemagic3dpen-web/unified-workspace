@@ -27,7 +27,9 @@ import {
   Briefcase,
   ImagePlus,
   Box,
-  Mic
+  Mic,
+  Music,
+  Calculator
 } from 'lucide-react';
 
 const PINNED_APPS = [
