@@ -47,30 +47,30 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
-import Home from './pages/Home';
-import AIModelsConfig from './pages/AIModelsConfig';
-import FileActions from './pages/FileActions';
-import TextEditor from './pages/TextEditor';
-import PDFEditor from './pages/PDFEditor';
-import ImageEditor from './pages/ImageEditor';
-import PresentationGenerator from './pages/PresentationGenerator';
-import DocumentGenerator from './pages/DocumentGenerator';
-import CollaborativeWorkspace from './pages/CollaborativeWorkspace';
 import AIAutoDevelopment from './pages/AIAutoDevelopment';
+import AIModelsConfig from './pages/AIModelsConfig';
+import CollaborativeWorkspace from './pages/CollaborativeWorkspace';
+import DocumentGenerator from './pages/DocumentGenerator';
+import FileActions from './pages/FileActions';
+import Home from './pages/Home';
+import ImageEditor from './pages/ImageEditor';
+import PDFEditor from './pages/PDFEditor';
+import PresentationGenerator from './pages/PresentationGenerator';
+import TextEditor from './pages/TextEditor';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Home": Home,
-    "AIModelsConfig": AIModelsConfig,
-    "FileActions": FileActions,
-    "TextEditor": TextEditor,
-    "PDFEditor": PDFEditor,
-    "ImageEditor": ImageEditor,
-    "PresentationGenerator": PresentationGenerator,
-    "DocumentGenerator": DocumentGenerator,
-    "CollaborativeWorkspace": CollaborativeWorkspace,
     "AIAutoDevelopment": AIAutoDevelopment,
+    "AIModelsConfig": AIModelsConfig,
+    "CollaborativeWorkspace": CollaborativeWorkspace,
+    "DocumentGenerator": DocumentGenerator,
+    "FileActions": FileActions,
+    "Home": Home,
+    "ImageEditor": ImageEditor,
+    "PDFEditor": PDFEditor,
+    "PresentationGenerator": PresentationGenerator,
+    "TextEditor": TextEditor,
 }
 
 export const pagesConfig = {

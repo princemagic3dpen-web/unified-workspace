@@ -8,19 +8,19 @@ import {
   Send, 
   Bot, 
   User, 
-  Paperclip,
-  Image as ImageIcon,
-  FileText,
+  Mic,
+  MicOff,
+  Music,
+  ListTodo,
   Sparkles,
-  History,
-  Plus,
-  ChevronLeft,
   Loader2,
   Copy,
   Check
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { base44 } from '@/api/base44Client';
+import VoiceTranscription from './VoiceTranscription';
+import TasksPanel from './TasksPanel';
 
 export default function AIChat({ 
   conversations = [],
@@ -33,15 +33,22 @@ export default function AIChat({
 }) {
   const [message, setMessage] = useState('');
   const [showHistory, setShowHistory] = useState(false);
+  const [showTasks, setShowTasks] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
+  const [humanTranscriptions, setHumanTranscriptions] = useState([]);
+  const [aiTranscriptions, setAiTranscriptions] = useState([]);
   const scrollRef = useRef(null);
+  const scrollRef2 = useRef(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [currentConversation?.messages]);
+    if (scrollRef2.current) {
+      scrollRef2.current.scrollTop = scrollRef2.current.scrollHeight;
+    }
+  }, [currentConversation?.messages, humanTranscriptions, aiTranscriptions]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,76 +64,90 @@ export default function AIChat({
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const handleVoiceTranscription = (transcription) => {
-    setTranscriptions(prev => [transcription, ...prev.slice(0, 99)]);
-    
-    // Si c'est une personne qui parle, envoyer automatiquement le message
-    if (transcription.speaker_type === 'human' && transcription.text.trim()) {
-      onSendMessage(transcription.text);
+  const handleVoiceTranscription = async (transcription) => {
+    if (transcription.speaker_type === 'human') {
+      setHumanTranscriptions(prev => [transcription, ...prev]);
+      
+      // Envoyer automatiquement le message
+      if (transcription.text.trim()) {
+        await onSendMessage(transcription.text);
+        
+        // Enregistrer dans la base de données
+        await base44.entities.VoiceTranscription.create(transcription);
+      }
     }
   };
 
-  const quickActions = [
-    { icon: FileText, label: 'Créer 50 fichiers', prompt: 'Crée une structure complète de projet avec 50+ fichiers organisés en dossiers pour ' },
-    { icon: Sparkles, label: 'Document 100 pages', prompt: 'Génère un document complet de 100 pages avec introduction, développement détaillé et conclusion sur ' },
-    { icon: ImageIcon, label: 'Présentation + Visuels', prompt: 'Crée une présentation PowerPoint professionnelle avec visuels automatiques (charts basés sur données, SVGs, diagrammes) adaptée pour audience executive sur ' },
-  ];
+  // Ajouter les réponses IA aux transcriptions
+  useEffect(() => {
+    if (currentConversation?.messages) {
+      const aiMessages = currentConversation.messages
+        .filter(m => m.role === 'assistant')
+        .map(m => ({
+          speaker_type: 'ai',
+          text: m.content,
+          timestamp: m.timestamp || new Date().toISOString(),
+          conversation_id: currentConversation.id
+        }));
+      setAiTranscriptions(aiMessages);
+    }
+  }, [currentConversation]);
 
   return (
-    <div className="h-full flex bg-gradient-to-br from-slate-50 to-white rounded-2xl shadow-xl border border-slate-200/50 overflow-hidden">
-      {/* Sidebar - History */}
-      <AnimatePresence>
-        {showHistory && (
+    <>
+      <TasksPanel isOpen={showTasks} onClose={() => setShowTasks(false)} />
+      
+      <div className="h-full flex bg-white overflow-hidden">
+        {/* Sidebar - History */}
+        <AnimatePresence>
+          {showHistory && (
           <motion.div
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: 280, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
-            className="border-r border-slate-200 bg-slate-50/50 overflow-hidden"
+            className="border-r border-slate-300 bg-slate-50 overflow-hidden"
           >
-            <div className="p-4 border-b border-slate-200">
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-slate-700">Historique</h3>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setShowHistory(false)}
-                  className="h-8 w-8 rounded-lg"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </Button>
-              </div>
+            <div className="p-3 border-b border-slate-300 bg-white">
+              <h3 className="font-bold text-slate-900 mb-2">Menu</h3>
+              <Button
+                onClick={onNewConversation}
+                className="w-full justify-start bg-blue-600 hover:bg-blue-700 mb-2"
+              >
+                <MessageSquare className="w-4 h-4 mr-2" />
+                Nouvelle conversation
+              </Button>
+              <Button
+                onClick={() => setShowTasks(true)}
+                variant="outline"
+                className="w-full justify-start"
+              >
+                <ListTodo className="w-4 h-4 mr-2" />
+                Gestionnaire Tâches
+              </Button>
             </div>
             
             <div className="p-2">
-              <Button
-                onClick={onNewConversation}
-                className="w-full justify-start rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 mb-2"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Nouvelle conversation
-              </Button>
+              <div className="text-xs font-bold text-slate-600 mb-2 px-2">📜 Historique</div>
               
-              <ScrollArea className="h-[calc(100%-60px)]">
+              <ScrollArea className="h-[calc(100%-140px)]">
                 <div className="space-y-1">
                   {conversations.map(conv => (
-                    <motion.button
+                    <button
                       key={conv.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
                       onClick={() => onSelectConversation(conv)}
-                      className={`w-full p-3 rounded-xl text-left transition-colors ${
+                      className={`w-full p-2 rounded-lg text-left transition-colors text-sm ${
                         currentConversation?.id === conv.id
-                          ? 'bg-white shadow-sm border border-cyan-200'
-                          : 'hover:bg-white/50'
+                          ? 'bg-blue-100 border border-blue-300'
+                          : 'hover:bg-slate-100 bg-white border border-slate-200'
                       }`}
                     >
-                      <p className="text-sm font-medium text-slate-700 truncate">
+                      <p className="font-medium text-slate-900 truncate text-xs">
                         {conv.title || 'Sans titre'}
                       </p>
-                      <p className="text-xs text-slate-400 mt-1">
-                        {conv.messages?.length || 0} messages
+                      <p className="text-xs text-slate-600">
+                        {conv.messages?.length || 0} msg
                       </p>
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </ScrollArea>
@@ -135,186 +156,174 @@ export default function AIChat({
         )}
       </AnimatePresence>
 
-      {/* Main chat area */}
+      {/* Main chat area - 2 COLONNES PLEIN ÉCRAN */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="p-4 border-b border-slate-100 bg-white/80 backdrop-blur-sm">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              {!showHistory && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setShowHistory(true)}
-                  className="rounded-xl hover:bg-cyan-50"
-                >
-                  <History className="w-5 h-5 text-slate-600" />
-                </Button>
-              )}
-              <div className="p-2 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-200">
-                <Bot className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-slate-800">Assistant IA</h2>
-                <p className="text-sm text-slate-500">
-                  Gestion intelligente de fichiers
-                </p>
-              </div>
+        <div className="p-3 border-b border-slate-300 bg-gradient-to-r from-blue-50 to-purple-50 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+              <Bot className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-slate-900">Minima-X - Assistant IA v3.0</h2>
+              <p className="text-xs text-slate-700">
+                💬 Mr Christian Debien | 🎤 Transcription temps réel | 🧮 Moteur mathématique LLaMA+Transformer
+              </p>
+            </div>
+          </div>
+          
+          <VoiceTranscription onTranscription={handleVoiceTranscription} />
+        </div>
+
+        {/* 2 COLONNES DE TRANSCRIPTION */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* COLONNE GAUCHE: Transcriptions Humaines */}
+          <div className="w-1/2 border-r border-slate-300 flex flex-col bg-blue-50">
+            <div className="p-3 bg-blue-100 border-b border-blue-300 flex items-center gap-2">
+              <User className="w-5 h-5 text-blue-700" />
+              <h3 className="font-bold text-blue-900">🎤 Transcription Vocale Humaine</h3>
+              <span className="ml-auto text-xs text-blue-700">{humanTranscriptions.length} messages</span>
             </div>
             
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onNewConversation}
-              className="rounded-xl"
-            >
-              <Plus className="w-4 h-4 mr-1" />
-              Nouveau
-            </Button>
+            <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+              <div className="space-y-3">
+                {humanTranscriptions.map((trans, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="p-3 bg-white rounded-lg border-2 border-blue-200 shadow-sm"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <User className="w-4 h-4 text-blue-600" />
+                      <span className="text-xs font-bold text-blue-900">
+                        Locuteur {trans.speaker_id || 'Humain'}
+                      </span>
+                      <span className="text-xs text-slate-600 ml-auto">
+                        {new Date(trans.timestamp).toLocaleTimeString('fr-FR')}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-900 leading-relaxed">{trans.text}</p>
+                    {trans.is_song && (
+                      <div className="mt-2 flex items-center gap-1 text-xs text-purple-700">
+                        <Music className="w-3 h-3" />
+                        Chanson détectée - Partition générée
+                      </div>
+                    )}
+                    {trans.voice_signature && (
+                      <div className="mt-1 text-xs text-slate-500">
+                        🔢 Hash vocal: {trans.voice_signature.pattern_hash}
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+                {humanTranscriptions.length === 0 && (
+                  <div className="text-center py-12 text-slate-500">
+                    <Mic className="w-12 h-12 mx-auto mb-3 text-blue-400" />
+                    <p className="text-sm">🎤 Parlez pour commencer la transcription</p>
+                    <p className="text-xs mt-1">Reconnaissance vocale activée automatiquement</p>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+          </div>
+
+          {/* COLONNE DROITE: Réponses IA */}
+          <div className="w-1/2 flex flex-col bg-purple-50">
+            <div className="p-3 bg-purple-100 border-b border-purple-300 flex items-center gap-2">
+              <Bot className="w-5 h-5 text-purple-700" />
+              <h3 className="font-bold text-purple-900">🤖 Réponses Intelligence Artificielle</h3>
+              <span className="ml-auto text-xs text-purple-700">{aiTranscriptions.length} réponses</span>
+            </div>
+            
+            <ScrollArea className="flex-1 p-4" ref={scrollRef2}>
+              <div className="space-y-3">
+                {aiTranscriptions.map((trans, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="p-4 bg-white rounded-lg border-2 border-purple-200 shadow-sm"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <Bot className="w-4 h-4 text-purple-600" />
+                      <span className="text-xs font-bold text-purple-900">Minima-X (LLaMA + Transformer)</span>
+                      <span className="text-xs text-slate-600 ml-auto">
+                        {new Date(trans.timestamp).toLocaleTimeString('fr-FR')}
+                      </span>
+                    </div>
+                    <div className="prose prose-sm prose-slate max-w-none">
+                      <ReactMarkdown>{trans.text}</ReactMarkdown>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => copyToClipboard(trans.text, `ai-${idx}`)}
+                      className="mt-2 h-6 px-2 text-purple-600 hover:text-purple-800"
+                    >
+                      {copiedId === `ai-${idx}` ? (
+                        <Check className="w-3 h-3 mr-1" />
+                      ) : (
+                        <Copy className="w-3 h-3 mr-1" />
+                      )}
+                      <span className="text-xs">{copiedId === `ai-${idx}` ? 'Copié' : 'Copier'}</span>
+                    </Button>
+                  </motion.div>
+                ))}
+                
+                {isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="p-4 bg-white rounded-lg border-2 border-purple-300"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="w-5 h-5 animate-spin text-purple-600" />
+                      <span className="text-sm text-purple-900 font-medium">
+                        🧠 Analyse avec 500x LLaMA + Transformers...
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {aiTranscriptions.length === 0 && !isLoading && (
+                  <div className="text-center py-12 text-slate-500">
+                    <Bot className="w-12 h-12 mx-auto mb-3 text-purple-400" />
+                    <p className="text-sm">🤖 Minima-X attend vos questions</p>
+                    <p className="text-xs mt-1">Réponses via formules mathématiques avancées</p>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
           </div>
         </div>
 
-        {/* Messages */}
-        <ScrollArea className="flex-1 p-4" ref={scrollRef}>
-          {(!currentConversation?.messages || currentConversation.messages.length === 0) ? (
-            <div className="h-full flex flex-col items-center justify-center text-center p-8">
-              <div className="p-6 rounded-3xl bg-gradient-to-br from-violet-100 to-purple-100 mb-6">
-                <Sparkles className="w-12 h-12 text-violet-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-700 mb-2">
-                Agent IA Minima-X Prêt
-              </h3>
-              <p className="text-slate-500 mb-6 max-w-md">
-                Je peux créer des centaines de fichiers, générer des documents de 50-500 pages, 
-                développer des présentations PowerPoint complètes, organiser automatiquement vos dossiers,
-                et exécuter des centaines d'actions par message. Deep thinking activé.
-              </p>
-              
-              {/* Quick actions */}
-              <div className="flex flex-wrap justify-center gap-2">
-                {quickActions.map((action, idx) => (
-                  <Button
-                    key={idx}
-                    variant="outline"
-                    onClick={() => setMessage(action.prompt)}
-                    className="rounded-xl"
-                  >
-                    <action.icon className="w-4 h-4 mr-2" />
-                    {action.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {currentConversation.messages.map((msg, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
-                >
-                  <div className={`p-2 rounded-xl flex-shrink-0 ${
-                    msg.role === 'user' 
-                      ? 'bg-cyan-100' 
-                      : 'bg-gradient-to-br from-violet-500 to-purple-600'
-                  }`}>
-                    {msg.role === 'user' 
-                      ? <User className="w-4 h-4 text-cyan-700" />
-                      : <Bot className="w-4 h-4 text-white" />
-                    }
-                  </div>
-                  
-                  <div className={`max-w-[80%] ${msg.role === 'user' ? 'text-right' : ''}`}>
-                    <div className={`p-4 rounded-2xl ${
-                      msg.role === 'user'
-                        ? 'bg-cyan-600 text-white'
-                        : 'bg-white border border-slate-200 shadow-sm'
-                    }`}>
-                      {msg.role === 'user' ? (
-                        <p className="text-sm">{msg.content}</p>
-                      ) : (
-                        <div className="prose prose-sm prose-slate max-w-none">
-                          <ReactMarkdown>{msg.content}</ReactMarkdown>
-                        </div>
-                      )}
-                    </div>
-                    
-                    {msg.role === 'assistant' && (
-                      <div className="flex items-center gap-2 mt-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => copyToClipboard(msg.content, idx)}
-                          className="h-7 px-2 rounded-lg text-slate-400 hover:text-slate-600"
-                        >
-                          {copiedId === idx ? (
-                            <Check className="w-3 h-3 mr-1" />
-                          ) : (
-                            <Copy className="w-3 h-3 mr-1" />
-                          )}
-                          <span className="text-xs">
-                            {copiedId === idx ? 'Copié' : 'Copier'}
-                          </span>
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-              
-              {isLoading && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex gap-3"
-                >
-                  <div className="p-2 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="p-4 rounded-2xl bg-white border border-slate-200">
-                    <div className="flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin text-violet-600" />
-                      <span className="text-sm text-slate-500">Réflexion en cours...</span>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </div>
-          )}
-        </ScrollArea>
-
         {/* Input */}
-        <div className="p-4 border-t border-slate-100 bg-white/80 backdrop-blur-sm">
+        <div className="p-3 border-t border-slate-300 bg-white">
           <form onSubmit={handleSubmit} className="flex gap-2">
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="rounded-xl flex-shrink-0"
-            >
-              <Paperclip className="w-5 h-5 text-slate-400" />
-            </Button>
-            
             <Input
               ref={inputRef}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Demandez-moi n'importe quoi..."
-              className="flex-1 rounded-xl border-slate-200 focus:border-violet-400 focus:ring-violet-400"
+              placeholder="💬 Écrivez ou parlez à Minima-X (Mr Christian Debien - Fidèle & Professionnel)..."
+              className="flex-1 rounded-lg border-slate-300 focus:border-blue-500"
               disabled={isLoading}
             />
             
             <Button
               type="submit"
               disabled={!message.trim() || isLoading}
-              className="rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 px-6"
+              className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-6"
             >
               <Send className="w-4 h-4" />
             </Button>
           </form>
+          <p className="text-xs text-slate-500 mt-2 text-center">
+            🎤 Reconnaissance vocale active | 🧮 500x LLaMA & Transformers | 🤝 Collaboration temps réel
+          </p>
         </div>
       </div>
     </div>
+    </>
   );
 }

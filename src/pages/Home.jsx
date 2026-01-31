@@ -163,10 +163,11 @@ export default function Home() {
         size: { width: 800, height: 600 }
       },
       chat: {
-        title: 'Assistant IA',
+        title: 'Assistant IA - Minima-X v3.0',
         icon: Bot,
         color: '#8b5cf6',
-        size: { width: 700, height: 600 }
+        size: { width: 1400, height: 800 },
+        maximized: true
       },
       viewer: {
         title: data?.name || 'Visionneur',
@@ -629,9 +630,9 @@ Liste EXACTE avec:
     })));
   }, [events, folders, files, selectedDate, currentFolderId, currentConversation, chatLoading, savedConversations]);
 
-  // Initialize with calendar window
+  // Initialize with chat window (plein écran)
   useEffect(() => {
-    openWindow('calendar');
+    openWindow('chat');
   }, []);
 
   const favoriteItems = [
