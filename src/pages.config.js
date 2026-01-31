@@ -63,6 +63,7 @@ import SystemFunctionalities from './pages/SystemFunctionalities';
 import BusinessPreparation from './pages/BusinessPreparation';
 import MediaGenerator from './pages/MediaGenerator';
 import CompanyManagement from './pages/CompanyManagement';
+import OSPrincipal from './pages/OSPrincipal';
 import __Layout from './Layout.jsx';
 
 
@@ -83,6 +84,7 @@ export const PAGES = {
     "BusinessPreparation": BusinessPreparation,
     "MediaGenerator": MediaGenerator,
     "CompanyManagement": CompanyManagement,
+    "OSPrincipal": OSPrincipal,
 }
 
 export const pagesConfig = {
