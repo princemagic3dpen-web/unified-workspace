@@ -61,6 +61,8 @@ import AITestingEnvironment from './pages/AITestingEnvironment';
 import WindowManager from './pages/WindowManager';
 import SystemFunctionalities from './pages/SystemFunctionalities';
 import BusinessPreparation from './pages/BusinessPreparation';
+import MediaGenerator from './pages/MediaGenerator';
+import CompanyManagement from './pages/CompanyManagement';
 import __Layout from './Layout.jsx';
 
 
@@ -79,6 +81,8 @@ export const PAGES = {
     "WindowManager": WindowManager,
     "SystemFunctionalities": SystemFunctionalities,
     "BusinessPreparation": BusinessPreparation,
+    "MediaGenerator": MediaGenerator,
+    "CompanyManagement": CompanyManagement,
 }
 
 export const pagesConfig = {

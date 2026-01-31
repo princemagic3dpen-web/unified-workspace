@@ -32,6 +32,8 @@ import AITestingEnvironment from './AITestingEnvironment';
 import WindowManagerPage from './WindowManager';
 import SystemFunctionalities from './SystemFunctionalities';
 import BusinessPreparation from './BusinessPreparation';
+import MediaGenerator from './MediaGenerator';
+import CompanyManagement from './CompanyManagement';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -262,6 +264,18 @@ export default function Home() {
         icon: Folder,
         color: '#10b981',
         size: { width: 1000, height: 700 }
+      },
+      'media-generator': {
+        title: 'Générateur Média IA',
+        icon: Image,
+        color: '#ec4899',
+        size: { width: 1400, height: 800 }
+      },
+      'company-management': {
+        title: 'Gestion Entreprises',
+        icon: Folder,
+        color: '#3b82f6',
+        size: { width: 1200, height: 800 }
       }
     };
 
@@ -667,6 +681,12 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'business-prep':
         return <BusinessPreparation />;
+      
+      case 'media-generator':
+        return <MediaGenerator />;
+      
+      case 'company-management':
+        return <CompanyManagement />;
       
       default:
         return null;

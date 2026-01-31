@@ -24,27 +24,46 @@ export default function Layout({ children }) {
         }
         
         * {
-          scrollbar-width: thin;
-          scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
-        }
-        
-        *::-webkit-scrollbar {
-          width: 6px;
-          height: 6px;
-        }
-        
-        *::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        
-        *::-webkit-scrollbar-thumb {
-          background-color: rgba(148, 163, 184, 0.3);
-          border-radius: 3px;
-        }
-        
-        *::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(148, 163, 184, 0.5);
-        }
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+          }
+
+          *::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+
+          *::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          *::-webkit-scrollbar-thumb {
+            background-color: rgba(148, 163, 184, 0.3);
+            border-radius: 3px;
+          }
+
+          *::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(148, 163, 184, 0.5);
+          }
+
+          /* Effets semi-transparence globaux */
+          .glass-effect {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+          }
+
+          .glass-hover:hover {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(24px);
+            border-color: rgba(148, 163, 184, 0.2);
+            transition: all 0.3s ease;
+          }
+
+          /* Animation fluide universelle */
+          * {
+            transition: opacity 0.2s ease, transform 0.2s ease;
+          }
       `}</style>
       {children}
       <Toaster 

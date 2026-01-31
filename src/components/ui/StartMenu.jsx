@@ -49,6 +49,8 @@ const ALL_APPS = [
   { id: 'file-actions', name: 'Actions Fichiers', icon: Folder, color: '#10b981' },
   { id: 'pdf-editor', name: 'Éditeur PDF', icon: FileText, color: '#ef4444' },
   { id: 'image-editor', name: 'Générateur Images 4K', icon: ImagePlus, color: '#f59e0b' },
+  { id: 'media-generator', name: 'Générateur Média IA', icon: Presentation, color: '#ec4899' },
+  { id: 'company-management', name: 'Gestion Entreprises', icon: Briefcase, color: '#3b82f6' },
 ];
 
 export default function StartMenu({ 
