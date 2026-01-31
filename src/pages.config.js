@@ -74,6 +74,7 @@ import ProactiveAgents from './pages/ProactiveAgents';
 import AdvancedParametersManager from './pages/AdvancedParametersManager';
 import ParametersDiagram from './pages/ParametersDiagram';
 import WindowCreator from './pages/WindowCreator';
+import VoiceCommandsList from './pages/VoiceCommandsList';
 import __Layout from './Layout.jsx';
 
 
@@ -105,6 +106,7 @@ export const PAGES = {
     "AdvancedParametersManager": AdvancedParametersManager,
     "ParametersDiagram": ParametersDiagram,
     "WindowCreator": WindowCreator,
+    "VoiceCommandsList": VoiceCommandsList,
 }
 
 export const pagesConfig = {

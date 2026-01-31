@@ -55,6 +55,7 @@ const ALL_APPS = [
   { id: 'proactive-agents', name: 'Agents IA Proactifs', icon: Bot, color: '#6366f1' },
   { id: 'advanced-parameters', name: 'Paramètres Avancés', icon: Settings, color: '#3b82f6' },
   { id: 'parameters-diagram', name: 'Diagramme 2D', icon: Code, color: '#8b5cf6' },
+  { id: 'voice-commands', name: 'Commandes Vocales (5000)', icon: Mic, color: '#6366f1' },
   { id: 'company-management', name: 'Gestion Entreprises', icon: Briefcase, color: '#3b82f6' },
 ];
 

@@ -11,7 +11,8 @@ import {
   FileText,
   Settings,
   Network,
-  Code
+  Code,
+  Mic
 } from 'lucide-react';
 
 import WindowManager from '../components/ui/WindowManager';
@@ -44,6 +45,7 @@ import ProactiveAgents from './ProactiveAgents';
 import AdvancedParametersManager from './AdvancedParametersManager';
 import ParametersDiagram from './ParametersDiagram';
 import WindowCreator from './WindowCreator';
+import VoiceCommandsList from './VoiceCommandsList';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
 
@@ -328,6 +330,12 @@ export default function OSPrincipal() {
         icon: Code,
         color: '#10b981',
         size: { width: 1600, height: 900 }
+      },
+      'voice-commands': {
+        title: 'Commandes Vocales - 5000 Disponibles',
+        icon: Mic,
+        color: '#6366f1',
+        size: { width: 1400, height: 900 }
       }
     };
 
@@ -746,6 +754,9 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       
       case 'window-creator':
         return <WindowCreator />;
+      
+      case 'voice-commands':
+        return <VoiceCommandsList />;
       
       default:
         return null;
