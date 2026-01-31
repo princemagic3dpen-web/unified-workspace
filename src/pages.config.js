@@ -60,6 +60,7 @@ import TextEditor from './pages/TextEditor';
 import AITestingEnvironment from './pages/AITestingEnvironment';
 import WindowManager from './pages/WindowManager';
 import SystemFunctionalities from './pages/SystemFunctionalities';
+import BusinessPreparation from './pages/BusinessPreparation';
 import __Layout from './Layout.jsx';
 
 
@@ -77,6 +78,7 @@ export const PAGES = {
     "AITestingEnvironment": AITestingEnvironment,
     "WindowManager": WindowManager,
     "SystemFunctionalities": SystemFunctionalities,
+    "BusinessPreparation": BusinessPreparation,
 }
 
 export const pagesConfig = {
