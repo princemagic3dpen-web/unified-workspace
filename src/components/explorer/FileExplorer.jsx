@@ -471,6 +471,9 @@ export default function FileExplorer({
 
   const rootFolders = folders.filter(f => !f.parent_id);
 
+  const currentFolder = folders.find(f => f.id === currentFolderId);
+  const contextFilesCount = currentFolderId ? files.filter(f => f.folder_id === currentFolderId).length : files.length;
+
   return (
     <div className="h-full flex bg-white rounded-2xl shadow-xl border border-slate-300 overflow-hidden">
       {/* Left Sidebar - Folder Tree */}
