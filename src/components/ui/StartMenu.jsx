@@ -32,7 +32,8 @@ import {
   Calculator,
   Sparkles,
   Book,
-  Brain
+  Brain,
+  Zap
 } from 'lucide-react';
 
 const PINNED_APPS = [
