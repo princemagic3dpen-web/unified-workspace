@@ -14,7 +14,8 @@ import {
   Code,
   Mic,
   AlertTriangle,
-  CheckCircle2
+  CheckCircle2,
+  Zap
 } from 'lucide-react';
 
 import WindowManager from '../components/ui/WindowManager';
@@ -64,6 +65,7 @@ import GrokIntegration from './GrokIntegration';
 import OSTableOfContents from './OSTableOfContents';
 import AIControlCenter from './AIControlCenter';
 import AIConversationsAdvanced from './AIConversationsAdvanced';
+import ActionsAI from './ActionsAI';
 import CustomWindowRunner from '../components/windows/CustomWindowRunner';
 import FolderCreateModal from '../components/modals/FolderCreateModal';
 import FileUploadModal from '../components/modals/FileUploadModal';
@@ -409,6 +411,13 @@ export default function OSPrincipal() {
         icon: MessageSquare,
         color: '#a855f7',
         size: { width: 1600, height: 900 },
+        maximized: true
+      },
+      'actions-ai': {
+        title: 'Actions IA — Fichiers, MHTML, Robots QI∞',
+        icon: Zap,
+        color: '#6366f1',
+        size: { width: 1700, height: 950 },
         maximized: true
       }
     };
@@ -949,6 +958,9 @@ MAINTENANT: Réponds avec maximum d'intelligence et d'actions concrètes.`,
       case 'ai-conversations-advanced':
         return <AIConversationsAdvanced />;
       
+      case 'actions-ai':
+        return <ActionsAI files={files} folders={folders} />;
+
       default:
         return null;
     }

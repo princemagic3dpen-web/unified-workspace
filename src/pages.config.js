@@ -50,6 +50,7 @@
 import AIAutoDevelopment from './pages/AIAutoDevelopment';
 import AICollaborationHub from './pages/AICollaborationHub';
 import AIControlCenter from './pages/AIControlCenter';
+import AIConversationsAdvanced from './pages/AIConversationsAdvanced';
 import AIEnginesList from './pages/AIEnginesList';
 import AIModelsConfig from './pages/AIModelsConfig';
 import AIOrchestrator from './pages/AIOrchestrator';
@@ -89,7 +90,7 @@ import VoiceCommandsList from './pages/VoiceCommandsList';
 import VoiceSystemControl from './pages/VoiceSystemControl';
 import WindowCreator from './pages/WindowCreator';
 import WindowManager from './pages/WindowManager';
-import AIConversationsAdvanced from './pages/AIConversationsAdvanced';
+import ActionsAI from './pages/ActionsAI';
 import __Layout from './Layout.jsx';
 
 
@@ -97,6 +98,7 @@ export const PAGES = {
     "AIAutoDevelopment": AIAutoDevelopment,
     "AICollaborationHub": AICollaborationHub,
     "AIControlCenter": AIControlCenter,
+    "AIConversationsAdvanced": AIConversationsAdvanced,
     "AIEnginesList": AIEnginesList,
     "AIModelsConfig": AIModelsConfig,
     "AIOrchestrator": AIOrchestrator,
@@ -136,7 +138,7 @@ export const PAGES = {
     "VoiceSystemControl": VoiceSystemControl,
     "WindowCreator": WindowCreator,
     "WindowManager": WindowManager,
-    "AIConversationsAdvanced": AIConversationsAdvanced,
+    "ActionsAI": ActionsAI,
 }
 
 export const pagesConfig = {

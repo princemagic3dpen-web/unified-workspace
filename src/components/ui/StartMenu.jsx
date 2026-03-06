@@ -76,6 +76,7 @@ const ALL_APPS = [
   { id: 'table-of-contents', name: 'Table Matières OS Complète', icon: Book, color: '#6366f1' },
   { id: 'ai-control-center', name: 'Centre Contrôle IA 500+', icon: Brain, color: '#8b5cf6' },
   { id: 'ai-conversations-advanced', name: 'Conversations IA QI∞ Avancées', icon: MessageSquare, color: '#a855f7' },
+  { id: 'actions-ai', name: 'Actions IA — Fichiers MHTML Robots QI∞', icon: Zap, color: '#6366f1' },
 ];
 
 export default function StartMenu({ 
