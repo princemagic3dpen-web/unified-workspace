@@ -540,14 +540,24 @@ export default function FileExplorer({
               </p>
             </div>
             
-            <Button
-              size="sm"
-              onClick={onUploadFile}
-              className="rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
-            >
-              <Upload className="w-4 h-4 mr-2" />
-              Importer fichiers
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                onClick={() => { setShowAIPanel(!showAIPanel); setActionResult(''); }}
+                className={`rounded-xl text-white ${showAIPanel ? 'bg-purple-700 hover:bg-purple-800' : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700'}`}
+              >
+                <Zap className="w-4 h-4 mr-2" />
+                Actions IA
+              </Button>
+              <Button
+                size="sm"
+                onClick={onUploadFile}
+                className="rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                Importer
+              </Button>
+            </div>
           </div>
         </div>
 
