@@ -562,31 +562,135 @@ export default function FileExplorer({
         </div>
 
         {/* Files grid */}
-        <ScrollArea className="flex-1 p-4">
-          {currentFolderFiles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              {currentFolderFiles.map(file => renderFile(file))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-center p-8">
-              <div className="p-6 rounded-2xl bg-slate-100 mb-4">
-                <File className="w-16 h-16 text-slate-400" />
+        <div className="flex flex-1 overflow-hidden">
+          <ScrollArea className="flex-1 p-4">
+            {currentFolderFiles.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {currentFolderFiles.map(file => renderFile(file))}
               </div>
-              <p className="text-slate-800 text-lg mb-2">Aucun fichier</p>
-              <p className="text-sm text-slate-600 mb-4">
-                Importez des fichiers ou demandez à l'IA d'en créer
-              </p>
-              <Button
-                variant="outline"
-                onClick={onUploadFile}
-                className="rounded-xl border-slate-300 text-slate-700 hover:bg-slate-100"
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-center p-8">
+                <div className="p-6 rounded-2xl bg-slate-100 mb-4">
+                  <File className="w-16 h-16 text-slate-400" />
+                </div>
+                <p className="text-slate-800 text-lg mb-2">Aucun fichier</p>
+                <p className="text-sm text-slate-600 mb-4">
+                  Importez des fichiers ou demandez à l'IA d'en créer
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={onUploadFile}
+                  className="rounded-xl border-slate-300 text-slate-700 hover:bg-slate-100"
+                >
+                  <Upload className="w-4 h-4 mr-2" />
+                  Importer des fichiers
+                </Button>
+              </div>
+            )}
+          </ScrollArea>
+
+          {/* Panneau Actions IA */}
+          <AnimatePresence>
+            {showAIPanel && (
+              <motion.div
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: 340, opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="border-l border-slate-300 bg-gradient-to-b from-slate-900 to-purple-950 flex flex-col overflow-hidden"
               >
-                <Upload className="w-4 h-4 mr-2" />
-                Importer des fichiers
-              </Button>
-            </div>
-          )}
-        </ScrollArea>
+                {/* Header panneau */}
+                <div className="p-3 border-b border-slate-700 flex items-center justify-between flex-shrink-0">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-purple-400" />
+                    <span className="font-bold text-white text-base">Actions IA</span>
+                    <Badge className="bg-purple-700 text-white text-xs">{contextFilesCount} fichiers</Badge>
+                  </div>
+                  <Button size="icon" variant="ghost" onClick={() => setShowAIPanel(false)} className="h-6 w-6 text-slate-400 hover:text-white">
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
+
+                <div className="p-3 border-b border-slate-700 flex-shrink-0">
+                  <p className="text-xs text-slate-400">
+                    Dossier: <span className="text-purple-300 font-medium">{currentFolder?.name || 'Racine'}</span>
+                    {' '}• {contextFilesCount} fichier{contextFilesCount > 1 ? 's' : ''}
+                  </p>
+                </div>
+
+                {/* Liste des actions */}
+                <ScrollArea className="flex-1">
+                  <div className="p-3 space-y-2">
+                    {AI_ACTIONS.map(action => {
+                      const Icon = action.icon;
+                      const isRunning = runningActionId === action.id;
+                      return (
+                        <div key={action.id} className="p-3 rounded-lg bg-slate-800/60 border border-slate-700">
+                          <div className="flex items-start gap-2 mb-2">
+                            <Icon className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-white leading-tight">{action.label}</p>
+                              <p className="text-xs text-slate-400 mt-0.5 leading-tight">{action.desc}</p>
+                            </div>
+                          </div>
+                          {isRunning && (
+                            <div className="mb-2">
+                              <div className="w-full bg-slate-700 rounded-full h-1.5">
+                                <motion.div
+                                  className="h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-400"
+                                  animate={{ width: `${progress}%` }}
+                                  transition={{ duration: 0.4 }}
+                                />
+                              </div>
+                              <p className="text-xs text-slate-400 mt-1">{Math.round(progress)}% en cours...</p>
+                            </div>
+                          )}
+                          <Button
+                            size="sm"
+                            onClick={() => runAIAction(action)}
+                            disabled={!!runningActionId}
+                            className="w-full h-7 text-xs bg-purple-700 hover:bg-purple-600 text-white"
+                          >
+                            {isRunning ? (
+                              <><Loader2 className="w-3 h-3 animate-spin mr-1" />En cours...</>
+                            ) : (
+                              <><Play className="w-3 h-3 mr-1" />Lancer</>
+                            )}
+                          </Button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </ScrollArea>
+
+                {/* Résultat */}
+                {actionResult && (
+                  <div className="border-t border-slate-700 flex-shrink-0" style={{ maxHeight: '40%' }}>
+                    <div className="p-2 bg-slate-800 flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        <CheckCircle2 className="w-4 h-4 text-green-400" />
+                        <span className="text-xs font-semibold text-green-300">Résultat IA</span>
+                      </div>
+                      <div className="flex gap-1">
+                        <Button size="sm" className="h-6 px-2 text-xs bg-indigo-700 hover:bg-indigo-600"
+                          onClick={() => { navigator.clipboard.writeText(actionResult); toast.success('Copié!'); }}>
+                          Copier
+                        </Button>
+                        <Button size="sm" variant="ghost" className="h-6 px-2 text-xs text-slate-400"
+                          onClick={() => setActionResult('')}>
+                          <X className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                    <ScrollArea className="h-36">
+                      <pre className="p-3 text-xs text-slate-300 whitespace-pre-wrap font-mono leading-relaxed">{actionResult}</pre>
+                    </ScrollArea>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
