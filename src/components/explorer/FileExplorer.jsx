@@ -71,12 +71,33 @@ const FILE_ICONS = {
 };
 
 const AI_ACTIONS = [
-  { id: 'fusion', label: 'Fusionner fichiers', icon: GitMerge, desc: 'Fusionne tous les fichiers du dossier en un document maître' },
-  { id: 'defusion', label: 'Défusionner / Éclater', icon: Scissors, desc: 'Divise les fichiers en sous-fichiers thématiques' },
-  { id: 'rewrite', label: 'Réécriture & Embellissement', icon: Wand2, desc: 'Réécrit et embellit tous les textes avec QI∞' },
-  { id: 'table_contents', label: 'Table des matières', icon: BookOpen, desc: 'Génère une table des matières de tous les fichiers' },
-  { id: 'thematic', label: 'Listing thématique', icon: List, desc: 'Classe les fichiers par thèmes détectés automatiquement' },
-  { id: 'reorganize', label: 'Réorganisation IA', icon: Brain, desc: 'Réorganise les dossiers et fichiers intelligemment' },
+  // --- STRUCTURE ---
+  { id: 'fusion', label: '🔗 Fusionner fichiers', icon: GitMerge, desc: 'Fusionne tous les fichiers en un document maître structuré', category: 'Structure' },
+  { id: 'defusion', label: '✂️ Défusionner / Éclater', icon: Scissors, desc: 'Divise les fichiers en sous-fichiers thématiques numérotés', category: 'Structure' },
+  { id: 'reorganize', label: '🗂️ Réorganisation IA', icon: Brain, desc: 'Propose une hiérarchie optimale de dossiers et fichiers', category: 'Structure' },
+  { id: 'rename_all', label: '✏️ Renommer intelligemment', icon: Edit, desc: 'Renomme tous les fichiers avec des noms clairs et cohérents', category: 'Structure' },
+  { id: 'duplicate_detect', label: '🔍 Détecter doublons', icon: Copy, desc: 'Identifie les fichiers en double ou très similaires', category: 'Structure' },
+  // --- CONTENU ---
+  { id: 'rewrite', label: '✨ Réécriture & Embellissement', icon: Wand2, desc: 'Réécrit tous les textes avec style professionnel QI∞', category: 'Contenu' },
+  { id: 'table_contents', label: '📋 Table des matières', icon: BookOpen, desc: 'Génère une table des matières hiérarchique complète', category: 'Contenu' },
+  { id: 'thematic', label: '🏷️ Listing thématique', icon: List, desc: 'Classe les fichiers par thèmes détectés automatiquement', category: 'Contenu' },
+  { id: 'summary', label: '📝 Résumé global', icon: FileText, desc: 'Produit un résumé exécutif de tous les fichiers du dossier', category: 'Contenu' },
+  { id: 'keywords', label: '🔑 Extraction mots-clés', icon: Brain, desc: 'Extrait les mots-clés et concepts majeurs de chaque fichier', category: 'Contenu' },
+  { id: 'translate_fr', label: '🇫🇷 Traduire en Français', icon: BookOpen, desc: 'Traduit tous les fichiers en français professionnel', category: 'Contenu' },
+  { id: 'translate_en', label: '🇬🇧 Traduire en Anglais', icon: BookOpen, desc: 'Traduit tous les fichiers en anglais professionnel', category: 'Contenu' },
+  // --- ANALYSE ---
+  { id: 'audit', label: '🔬 Audit qualité', icon: CheckCircle2, desc: 'Analyse la qualité, cohérence et complétude de tous les fichiers', category: 'Analyse' },
+  { id: 'gap_analysis', label: '📊 Analyse des manques', icon: List, desc: 'Détecte ce qui manque et propose des fichiers à créer', category: 'Analyse' },
+  { id: 'cross_refs', label: '🔗 Références croisées', icon: GitMerge, desc: 'Identifie les liens et dépendances entre fichiers', category: 'Analyse' },
+  { id: 'stats', label: '📈 Statistiques & métriques', icon: Brain, desc: 'Produit des statistiques détaillées sur le contenu du dossier', category: 'Analyse' },
+  // --- GÉNÉRATION ---
+  { id: 'generate_readme', label: '📄 Générer README', icon: FileText, desc: 'Génère un README complet pour ce dossier/projet', category: 'Génération' },
+  { id: 'generate_report', label: '📑 Rapport PDF prêt', icon: Download, desc: 'Génère un rapport complet au format Markdown exportable', category: 'Génération' },
+  { id: 'generate_index', label: '🗃️ Index complet', icon: List, desc: 'Crée un index détaillé de tous les fichiers et leur contenu', category: 'Génération' },
+  { id: 'generate_tags', label: '🏷️ Tags automatiques', icon: Star, desc: 'Génère et assigne des tags à chaque fichier automatiquement', category: 'Génération' },
+  // --- MHTML / WEB ---
+  { id: 'mhtml_extract', label: '🌐 Extraire MHTML', icon: Download, desc: 'Extrait et structure le contenu de tous les fichiers MHTML', category: 'MHTML' },
+  { id: 'mhtml_convert', label: '🔄 Convertir MHTML→MD', icon: FileCode, desc: 'Convertit les fichiers MHTML en Markdown propre et lisible', category: 'MHTML' },
 ];
 
 export default function FileExplorer({
