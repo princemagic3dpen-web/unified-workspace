@@ -421,6 +421,54 @@ export default function FileExplorer({
     );
   };
 
+  const runAIAction = async (action) => {
+    const currentFolder = folders.find(f => f.id === currentFolderId);
+    const contextFiles = currentFolderId
+      ? files.filter(f => f.folder_id === currentFolderId)
+      : files;
+    const contextFolders = currentFolderId
+      ? folders.filter(f => f.parent_id === currentFolderId)
+      : folders.filter(f => !f.parent_id);
+
+    if (contextFiles.length === 0 && contextFolders.length === 0) {
+      toast.warning('Aucun fichier ou dossier dans ce contexte');
+      return;
+    }
+
+    setRunningActionId(action.id);
+    setActionResult('');
+    setProgress(0);
+
+    const interval = setInterval(() => {
+      setProgress(p => { if (p >= 85) { clearInterval(interval); return 85; } return p + Math.random() * 10 + 3; });
+    }, 500);
+
+    const fileList = contextFiles.map(f => `- ${f.name} (${f.file_type || 'autre'}, ${f.size ? Math.round(f.size/1024)+'KB' : '?'})${f.content ? ': ' + f.content.slice(0, 200) : ''}`).join('\n');
+    const folderList = contextFolders.map(f => `- ${f.name}`).join('\n');
+
+    const prompts = {
+      fusion: `MINIMA-X QI∞ - FUSION INTELLIGENTE\nDossier actuel: "${currentFolder?.name || 'Racine'}"\nFichiers (${contextFiles.length}):\n${fileList}\nSous-dossiers:\n${folderList}\n\nFusionne tous ces fichiers en un document maître structuré:\n1. Table des matières numérotée\n2. Chaque fichier devient une section\n3. Introduction et conclusion\n4. Index des concepts clés\nProduis le document fusionné complet maintenant.`,
+      defusion: `MINIMA-X QI∞ - DÉFUSION / ÉCLATEMENT\nDossier: "${currentFolder?.name || 'Racine'}"\nFichiers (${contextFiles.length}):\n${fileList}\n\nDivise et éclate ces fichiers en sous-fichiers thématiques:\n- Détecte les thèmes dans chaque fichier\n- Crée un fichier par thème (001_theme.md, 002_theme.md...)\n- Liste tous les fichiers créés avec leur contenu résumé\n- Produis le plan complet de décomposition maintenant.`,
+      rewrite: `MINIMA-X QI∞ - RÉÉCRITURE & EMBELLISSEMENT\nDossier: "${currentFolder?.name || 'Racine'}"\nFichiers (${contextFiles.length}):\n${fileList}\n\nRéécris et embellis tous ces textes:\n- Style professionnel élégant\n- Vocabulaire riche et précis\n- Titres dynamiques et captivants\n- Mise en forme Markdown parfaite\n- Emojis pertinents\nProduis la version embellie complète de chaque fichier maintenant.`,
+      table_contents: `MINIMA-X QI∞ - TABLE DES MATIÈRES\nDossier: "${currentFolder?.name || 'Racine'}"\nFichiers (${contextFiles.length}):\n${fileList}\nSous-dossiers:\n${folderList}\n\nGénère une table des matières complète:\n1. Format Markdown avec liens\n2. Hiérarchie: Dossiers → Fichiers → Sections\n3. Description de chaque fichier (2-3 lignes)\n4. Tags et catégories automatiques\n5. Numéros de référence\nProduis la table des matières complète maintenant.`,
+      thematic: `MINIMA-X QI∞ - LISTING THÉMATIQUE\nDossier: "${currentFolder?.name || 'Racine'}"\nFichiers (${contextFiles.length}):\n${fileList}\n\nClasse ces fichiers par thèmes:\n- Détecte 5-20 thèmes majeurs\n- Pour chaque thème: liste les fichiers associés + description\n- Connexions entre thèmes\n- Score de pertinence: R(t) = freq × depth\n- Suggestions de nouveaux fichiers à créer\nProduis le listing thématique complet maintenant.`,
+      reorganize: `MINIMA-X QI∞ - RÉORGANISATION INTELLIGENTE\nDossier actuel: "${currentFolder?.name || 'Racine'}"\nFichiers (${contextFiles.length}):\n${fileList}\nDossiers:\n${folderList}\n\nPropose une réorganisation optimale:\n1. Nouvelle hiérarchie de dossiers suggérée\n2. Quel fichier va où (avec justification)\n3. Nouveaux dossiers à créer\n4. Fichiers à renommer\n5. Structure finale optimisée\nProduis le plan de réorganisation complet maintenant.`,
+    };
+
+    try {
+      const response = await base44.integrations.Core.InvokeLLM({ prompt: prompts[action.id] });
+      clearInterval(interval);
+      setProgress(100);
+      setActionResult(response);
+      toast.success(`✅ ${action.label} terminé`);
+    } catch (e) {
+      clearInterval(interval);
+      setProgress(0);
+      toast.error('Erreur lors de l\'action IA');
+    }
+    setRunningActionId(null);
+  };
+
   const rootFolders = folders.filter(f => !f.parent_id);
 
   return (
