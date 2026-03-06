@@ -597,9 +597,9 @@ export default function FileExplorer({
           </div>
         </div>
 
-        {/* Files grid */}
-        <div className="flex flex-1 overflow-hidden">
-          <ScrollArea className="flex-1 p-4">
+        {/* Files grid - pleine largeur, jamais réduit */}
+        <div className="flex-1 overflow-hidden relative">
+          <ScrollArea className="h-full p-4">
             {currentFolderFiles.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {currentFolderFiles.map(file => renderFile(file))}
@@ -625,122 +625,130 @@ export default function FileExplorer({
             )}
           </ScrollArea>
 
-          {/* Panneau Actions IA */}
+          {/* Modal overlay Actions IA - flotte au-dessus sans réduire la grille */}
           <AnimatePresence>
             {showAIPanel && (
-              <motion.div
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 340, opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="border-l border-slate-300 bg-gradient-to-b from-slate-900 to-purple-950 flex flex-col overflow-hidden"
-              >
-                {/* Header panneau */}
-                <div className="p-3 border-b border-slate-700 flex items-center justify-between flex-shrink-0">
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-purple-400" />
-                    <span className="font-bold text-white text-base">Actions IA</span>
-                    <Badge className="bg-purple-700 text-white text-xs">{contextFilesCount} fichiers</Badge>
+              <>
+                {/* Backdrop semi-transparent */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute inset-0 bg-black/40 backdrop-blur-sm z-10"
+                  onClick={() => setShowAIPanel(false)}
+                />
+                {/* Panneau centré flottant */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-4 z-20 bg-gradient-to-b from-slate-900 to-purple-950 rounded-2xl border border-purple-700/50 shadow-2xl flex flex-col overflow-hidden"
+                  onClick={e => e.stopPropagation()}
+                >
+                  {/* Header */}
+                  <div className="p-4 border-b border-slate-700 flex items-center justify-between flex-shrink-0">
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-5 h-5 text-purple-400" />
+                      <span className="font-bold text-white text-base">Actions IA</span>
+                      <Badge className="bg-purple-700 text-white text-xs">{contextFilesCount} fichier{contextFilesCount > 1 ? 's' : ''}</Badge>
+                      <span className="text-xs text-slate-400 ml-1">— {currentFolder?.name || 'Racine'}</span>
+                    </div>
+                    <Button size="icon" variant="ghost" onClick={() => setShowAIPanel(false)} className="h-7 w-7 text-slate-400 hover:text-white">
+                      <X className="w-4 h-4" />
+                    </Button>
                   </div>
-                  <Button size="icon" variant="ghost" onClick={() => setShowAIPanel(false)} className="h-6 w-6 text-slate-400 hover:text-white">
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
 
-                <div className="p-3 border-b border-slate-700 flex-shrink-0">
-                  <p className="text-xs text-slate-400">
-                    Dossier: <span className="text-purple-300 font-medium">{currentFolder?.name || 'Racine'}</span>
-                    {' '}• {contextFilesCount} fichier{contextFilesCount > 1 ? 's' : ''}
-                  </p>
-                </div>
-
-                {/* Liste des actions par catégorie */}
-                <ScrollArea className="flex-1">
-                  <div className="p-3 space-y-4">
-                    {['Structure', 'Contenu', 'Analyse', 'Génération', 'MHTML'].map(category => {
-                      const catActions = AI_ACTIONS.filter(a => a.category === category);
-                      const catColors = {
-                        Structure: 'text-blue-300 border-blue-700',
-                        Contenu: 'text-emerald-300 border-emerald-700',
-                        Analyse: 'text-yellow-300 border-yellow-700',
-                        Génération: 'text-orange-300 border-orange-700',
-                        MHTML: 'text-cyan-300 border-cyan-700',
-                      };
-                      return (
-                        <div key={category}>
-                          <p className={`text-xs font-bold uppercase tracking-widest mb-2 pb-1 border-b ${catColors[category]}`}>{category}</p>
-                          <div className="space-y-2">
-                            {catActions.map(action => {
-                              const Icon = action.icon;
-                              const isRunning = runningActionId === action.id;
-                              return (
-                                <div key={action.id} className="p-2.5 rounded-lg bg-slate-800/70 border border-slate-700">
-                                  <div className="flex items-start gap-2 mb-2">
-                                    <Icon className="w-3.5 h-3.5 text-purple-400 mt-0.5 flex-shrink-0" />
-                                    <div className="flex-1 min-w-0">
-                                      <p className="text-xs font-semibold text-white leading-tight">{action.label}</p>
-                                      <p className="text-xs text-slate-400 mt-0.5 leading-tight">{action.desc}</p>
-                                    </div>
-                                  </div>
-                                  {isRunning && (
-                                    <div className="mb-2">
-                                      <div className="w-full bg-slate-700 rounded-full h-1">
-                                        <motion.div
-                                          className="h-1 rounded-full bg-gradient-to-r from-purple-500 to-indigo-400"
-                                          animate={{ width: `${progress}%` }}
-                                          transition={{ duration: 0.4 }}
-                                        />
+                  {/* Corps scrollable avec catégories */}
+                  <div className="flex-1 overflow-hidden flex">
+                    <ScrollArea className="flex-1">
+                      <div className="p-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {['Structure', 'Contenu', 'Analyse', 'Génération', 'MHTML'].map(category => {
+                          const catActions = AI_ACTIONS.filter(a => a.category === category);
+                          const catColors = {
+                            Structure: 'text-blue-300 border-blue-700',
+                            Contenu: 'text-emerald-300 border-emerald-700',
+                            Analyse: 'text-yellow-300 border-yellow-700',
+                            Génération: 'text-orange-300 border-orange-700',
+                            MHTML: 'text-cyan-300 border-cyan-700',
+                          };
+                          return (
+                            <div key={category} className="col-span-full">
+                              <p className={`text-xs font-bold uppercase tracking-widest mb-2 pb-1 border-b ${catColors[category]}`}>{category}</p>
+                              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                {catActions.map(action => {
+                                  const Icon = action.icon;
+                                  const isRunning = runningActionId === action.id;
+                                  return (
+                                    <div key={action.id} className="p-3 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-purple-600 transition-colors">
+                                      <div className="flex items-start gap-2 mb-2">
+                                        <Icon className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                                        <div className="flex-1 min-w-0">
+                                          <p className="text-xs font-semibold text-white leading-tight">{action.label}</p>
+                                          <p className="text-xs text-slate-400 mt-0.5 leading-tight">{action.desc}</p>
+                                        </div>
                                       </div>
-                                      <p className="text-xs text-slate-400 mt-1">{Math.round(progress)}%...</p>
+                                      {isRunning && (
+                                        <div className="mb-2">
+                                          <div className="w-full bg-slate-700 rounded-full h-1">
+                                            <motion.div
+                                              className="h-1 rounded-full bg-gradient-to-r from-purple-500 to-indigo-400"
+                                              animate={{ width: `${progress}%` }}
+                                              transition={{ duration: 0.4 }}
+                                            />
+                                          </div>
+                                          <p className="text-xs text-slate-400 mt-1">{Math.round(progress)}%...</p>
+                                        </div>
+                                      )}
+                                      <Button
+                                        size="sm"
+                                        onClick={() => runAIAction(action)}
+                                        disabled={!!runningActionId}
+                                        className="w-full h-7 text-xs bg-purple-800 hover:bg-purple-600 text-white"
+                                      >
+                                        {isRunning ? (
+                                          <><Loader2 className="w-3 h-3 animate-spin mr-1" />En cours...</>
+                                        ) : (
+                                          <><Play className="w-3 h-3 mr-1" />Lancer</>
+                                        )}
+                                      </Button>
                                     </div>
-                                  )}
-                                  <Button
-                                    size="sm"
-                                    onClick={() => runAIAction(action)}
-                                    disabled={!!runningActionId}
-                                    className="w-full h-6 text-xs bg-purple-800 hover:bg-purple-600 text-white"
-                                  >
-                                    {isRunning ? (
-                                      <><Loader2 className="w-3 h-3 animate-spin mr-1" />En cours...</>
-                                    ) : (
-                                      <><Play className="w-3 h-3 mr-1" />Lancer</>
-                                    )}
-                                  </Button>
-                                </div>
-                              );
-                            })}
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </ScrollArea>
+
+                    {/* Zone résultat à droite si présent */}
+                    {actionResult && (
+                      <div className="w-80 border-l border-slate-700 flex flex-col flex-shrink-0">
+                        <div className="p-3 bg-slate-800 flex items-center justify-between flex-shrink-0">
+                          <div className="flex items-center gap-1">
+                            <CheckCircle2 className="w-4 h-4 text-green-400" />
+                            <span className="text-xs font-semibold text-green-300">Résultat IA</span>
+                          </div>
+                          <div className="flex gap-1">
+                            <Button size="sm" className="h-6 px-2 text-xs bg-indigo-700 hover:bg-indigo-600"
+                              onClick={() => { navigator.clipboard.writeText(actionResult); toast.success('Copié!'); }}>
+                              Copier
+                            </Button>
+                            <Button size="sm" variant="ghost" className="h-6 px-1 text-xs text-slate-400"
+                              onClick={() => setActionResult('')}>
+                              <X className="w-3 h-3" />
+                            </Button>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                </ScrollArea>
-
-                {/* Résultat */}
-                {actionResult && (
-                  <div className="border-t border-slate-700 flex-shrink-0" style={{ maxHeight: '40%' }}>
-                    <div className="p-2 bg-slate-800 flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <CheckCircle2 className="w-4 h-4 text-green-400" />
-                        <span className="text-xs font-semibold text-green-300">Résultat IA</span>
+                        <ScrollArea className="flex-1">
+                          <pre className="p-3 text-xs text-slate-300 whitespace-pre-wrap font-mono leading-relaxed">{actionResult}</pre>
+                        </ScrollArea>
                       </div>
-                      <div className="flex gap-1">
-                        <Button size="sm" className="h-6 px-2 text-xs bg-indigo-700 hover:bg-indigo-600"
-                          onClick={() => { navigator.clipboard.writeText(actionResult); toast.success('Copié!'); }}>
-                          Copier
-                        </Button>
-                        <Button size="sm" variant="ghost" className="h-6 px-2 text-xs text-slate-400"
-                          onClick={() => setActionResult('')}>
-                          <X className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    </div>
-                    <ScrollArea className="h-36">
-                      <pre className="p-3 text-xs text-slate-300 whitespace-pre-wrap font-mono leading-relaxed">{actionResult}</pre>
-                    </ScrollArea>
+                    )}
                   </div>
-                )}
-              </motion.div>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
         </div>
