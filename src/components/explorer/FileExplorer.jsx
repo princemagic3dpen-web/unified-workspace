@@ -21,11 +21,28 @@ import {
   FileAudio,
   FileSpreadsheet,
   Presentation,
-  FileCode
+  FileCode,
+  Zap,
+  X,
+  Play,
+  Loader2,
+  Brain,
+  GitMerge,
+  Scissors,
+  Wand2,
+  BookOpen,
+  List,
+  Download,
+  CheckCircle2,
+  ToggleLeft,
+  ToggleRight
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
+import { base44 } from '@/api/base44Client';
+import { toast } from 'sonner';
 import {
   ContextMenu,
   ContextMenuContent,
