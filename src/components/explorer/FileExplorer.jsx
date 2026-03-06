@@ -657,45 +657,62 @@ export default function FileExplorer({
                   </p>
                 </div>
 
-                {/* Liste des actions */}
+                {/* Liste des actions par catégorie */}
                 <ScrollArea className="flex-1">
-                  <div className="p-3 space-y-2">
-                    {AI_ACTIONS.map(action => {
-                      const Icon = action.icon;
-                      const isRunning = runningActionId === action.id;
+                  <div className="p-3 space-y-4">
+                    {['Structure', 'Contenu', 'Analyse', 'Génération', 'MHTML'].map(category => {
+                      const catActions = AI_ACTIONS.filter(a => a.category === category);
+                      const catColors = {
+                        Structure: 'text-blue-300 border-blue-700',
+                        Contenu: 'text-emerald-300 border-emerald-700',
+                        Analyse: 'text-yellow-300 border-yellow-700',
+                        Génération: 'text-orange-300 border-orange-700',
+                        MHTML: 'text-cyan-300 border-cyan-700',
+                      };
                       return (
-                        <div key={action.id} className="p-3 rounded-lg bg-slate-800/60 border border-slate-700">
-                          <div className="flex items-start gap-2 mb-2">
-                            <Icon className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-semibold text-white leading-tight">{action.label}</p>
-                              <p className="text-xs text-slate-400 mt-0.5 leading-tight">{action.desc}</p>
-                            </div>
+                        <div key={category}>
+                          <p className={`text-xs font-bold uppercase tracking-widest mb-2 pb-1 border-b ${catColors[category]}`}>{category}</p>
+                          <div className="space-y-2">
+                            {catActions.map(action => {
+                              const Icon = action.icon;
+                              const isRunning = runningActionId === action.id;
+                              return (
+                                <div key={action.id} className="p-2.5 rounded-lg bg-slate-800/70 border border-slate-700">
+                                  <div className="flex items-start gap-2 mb-2">
+                                    <Icon className="w-3.5 h-3.5 text-purple-400 mt-0.5 flex-shrink-0" />
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-xs font-semibold text-white leading-tight">{action.label}</p>
+                                      <p className="text-xs text-slate-400 mt-0.5 leading-tight">{action.desc}</p>
+                                    </div>
+                                  </div>
+                                  {isRunning && (
+                                    <div className="mb-2">
+                                      <div className="w-full bg-slate-700 rounded-full h-1">
+                                        <motion.div
+                                          className="h-1 rounded-full bg-gradient-to-r from-purple-500 to-indigo-400"
+                                          animate={{ width: `${progress}%` }}
+                                          transition={{ duration: 0.4 }}
+                                        />
+                                      </div>
+                                      <p className="text-xs text-slate-400 mt-1">{Math.round(progress)}%...</p>
+                                    </div>
+                                  )}
+                                  <Button
+                                    size="sm"
+                                    onClick={() => runAIAction(action)}
+                                    disabled={!!runningActionId}
+                                    className="w-full h-6 text-xs bg-purple-800 hover:bg-purple-600 text-white"
+                                  >
+                                    {isRunning ? (
+                                      <><Loader2 className="w-3 h-3 animate-spin mr-1" />En cours...</>
+                                    ) : (
+                                      <><Play className="w-3 h-3 mr-1" />Lancer</>
+                                    )}
+                                  </Button>
+                                </div>
+                              );
+                            })}
                           </div>
-                          {isRunning && (
-                            <div className="mb-2">
-                              <div className="w-full bg-slate-700 rounded-full h-1.5">
-                                <motion.div
-                                  className="h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-400"
-                                  animate={{ width: `${progress}%` }}
-                                  transition={{ duration: 0.4 }}
-                                />
-                              </div>
-                              <p className="text-xs text-slate-400 mt-1">{Math.round(progress)}% en cours...</p>
-                            </div>
-                          )}
-                          <Button
-                            size="sm"
-                            onClick={() => runAIAction(action)}
-                            disabled={!!runningActionId}
-                            className="w-full h-7 text-xs bg-purple-700 hover:bg-purple-600 text-white"
-                          >
-                            {isRunning ? (
-                              <><Loader2 className="w-3 h-3 animate-spin mr-1" />En cours...</>
-                            ) : (
-                              <><Play className="w-3 h-3 mr-1" />Lancer</>
-                            )}
-                          </Button>
                         </div>
                       );
                     })}
