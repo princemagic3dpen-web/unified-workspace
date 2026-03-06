@@ -34,8 +34,9 @@ import {
   List,
   Download,
   CheckCircle2,
-  ToggleLeft,
-  ToggleRight
+  Copy,
+  Star,
+  Edit
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
