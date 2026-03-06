@@ -70,6 +70,15 @@ const FILE_ICONS = {
   other: File
 };
 
+const AI_ACTIONS = [
+  { id: 'fusion', label: 'Fusionner fichiers', icon: GitMerge, desc: 'Fusionne tous les fichiers du dossier en un document maître' },
+  { id: 'defusion', label: 'Défusionner / Éclater', icon: Scissors, desc: 'Divise les fichiers en sous-fichiers thématiques' },
+  { id: 'rewrite', label: 'Réécriture & Embellissement', icon: Wand2, desc: 'Réécrit et embellit tous les textes avec QI∞' },
+  { id: 'table_contents', label: 'Table des matières', icon: BookOpen, desc: 'Génère une table des matières de tous les fichiers' },
+  { id: 'thematic', label: 'Listing thématique', icon: List, desc: 'Classe les fichiers par thèmes détectés automatiquement' },
+  { id: 'reorganize', label: 'Réorganisation IA', icon: Brain, desc: 'Réorganise les dossiers et fichiers intelligemment' },
+];
+
 export default function FileExplorer({
   folders = [],
   files = [],
@@ -88,6 +97,10 @@ export default function FileExplorer({
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState('');
   const [dragOverId, setDragOverId] = useState(null);
+  const [showAIPanel, setShowAIPanel] = useState(false);
+  const [runningActionId, setRunningActionId] = useState(null);
+  const [actionResult, setActionResult] = useState('');
+  const [progress, setProgress] = useState(0);
 
   const toggleFolder = (folderId) => {
     const newExpanded = new Set(expandedFolders);
