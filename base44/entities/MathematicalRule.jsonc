@@ -1,0 +1,74 @@
+{
+  "name": "MathematicalRule",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom de la loi math\u00e9matique"
+    },
+    "natural_language_input": {
+      "type": "string",
+      "description": "Probl\u00e8me en langage naturel humain"
+    },
+    "mathematical_formula": {
+      "type": "string",
+      "description": "Formule math\u00e9matique g\u00e9n\u00e9r\u00e9e automatiquement"
+    },
+    "rule_type": {
+      "type": "string",
+      "enum": [
+        "optimization",
+        "differential_equation",
+        "probability",
+        "algebraic",
+        "logic",
+        "scheduling",
+        "allocation",
+        "priority"
+      ],
+      "description": "Type de loi math\u00e9matique"
+    },
+    "variables": {
+      "type": "object",
+      "description": "Variables et leurs d\u00e9finitions"
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Contraintes math\u00e9matiques"
+    },
+    "solution": {
+      "type": "object",
+      "description": "Solution calcul\u00e9e"
+    },
+    "solution_method": {
+      "type": "string",
+      "description": "M\u00e9thode utilis\u00e9e pour r\u00e9soudre"
+    },
+    "human_explanation": {
+      "type": "string",
+      "description": "Explication de la solution en langage clair"
+    },
+    "validation_score": {
+      "type": "number",
+      "description": "Score de validit\u00e9 de la solution (0-1)"
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cas d'utilisation de cette loi"
+    },
+    "created_for_context": {
+      "type": "string",
+      "description": "Contexte qui a n\u00e9cessit\u00e9 cette loi"
+    }
+  },
+  "required": [
+    "name",
+    "natural_language_input"
+  ]
+}

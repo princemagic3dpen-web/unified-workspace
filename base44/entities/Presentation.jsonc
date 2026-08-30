@@ -1,0 +1,174 @@
+{
+  "name": "Presentation",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Titre de la pr\u00e9sentation"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Sujet principal"
+    },
+    "audience_type": {
+      "type": "string",
+      "enum": [
+        "executive",
+        "technique",
+        "commercial",
+        "academique",
+        "grand_public"
+      ],
+      "default": "executive",
+      "description": "Type d'audience cible"
+    },
+    "style": {
+      "type": "string",
+      "description": "Style visuel et ton de la pr\u00e9sentation"
+    },
+    "total_slides": {
+      "type": "integer",
+      "description": "Nombre total de slides"
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slide_number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "bullet_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "visual_type": {
+            "type": "string",
+            "enum": [
+              "chart",
+              "diagram",
+              "image",
+              "infographic",
+              "none"
+            ]
+          },
+          "visual_description": {
+            "type": "string"
+          },
+          "visual_data_source": {
+            "type": "string"
+          },
+          "speaker_notes": {
+            "type": "string"
+          },
+          "quality_score": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Contenu d\u00e9taill\u00e9 de chaque slide"
+    },
+    "visuals_generated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "visual_id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "file_url": {
+            "type": "string"
+          },
+          "slide_number": {
+            "type": "integer"
+          },
+          "data_source": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Liste des visuels g\u00e9n\u00e9r\u00e9s automatiquement"
+    },
+    "quality_scores": {
+      "type": "object",
+      "properties": {
+        "structure": {
+          "type": "number"
+        },
+        "visuals": {
+          "type": "number"
+        },
+        "clarity": {
+          "type": "number"
+        },
+        "overall": {
+          "type": "number"
+        }
+      },
+      "description": "Scores de qualit\u00e9 0-100"
+    },
+    "improvements_suggested": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slide_number": {
+            "type": "integer"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "suggestion": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Suggestions d'am\u00e9lioration"
+    },
+    "source_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs des fichiers sources de donn\u00e9es"
+    },
+    "event_id": {
+      "type": "string",
+      "description": "ID de l'\u00e9v\u00e9nement li\u00e9 (si pr\u00e9sentation pour r\u00e9union)"
+    },
+    "version": {
+      "type": "integer",
+      "default": 1,
+      "description": "Num\u00e9ro de version de la pr\u00e9sentation"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "review",
+        "final",
+        "archived"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "title",
+    "subject",
+    "audience_type"
+  ]
+}

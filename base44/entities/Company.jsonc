@@ -1,0 +1,72 @@
+{
+  "name": "Company",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom de l'entreprise"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Secteur d'activit\u00e9"
+    },
+    "size": {
+      "type": "string",
+      "enum": [
+        "startup",
+        "small",
+        "medium",
+        "large",
+        "enterprise"
+      ],
+      "default": "small"
+    },
+    "employees_count": {
+      "type": "integer",
+      "description": "Nombre d'employ\u00e9s"
+    },
+    "founded_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "website": {
+      "type": "string"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "folder_id": {
+      "type": "string",
+      "description": "Dossier principal de l'entreprise"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

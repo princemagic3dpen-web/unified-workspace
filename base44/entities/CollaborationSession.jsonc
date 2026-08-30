@@ -1,0 +1,143 @@
+{
+  "name": "CollaborationSession",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom de la session de collaboration"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "human",
+              "agent"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "idle",
+              "offline"
+            ]
+          }
+        }
+      },
+      "description": "Liste des participants (humains et agents IA)"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource_id": {
+            "type": "string"
+          },
+          "resource_type": {
+            "type": "string",
+            "enum": [
+              "file",
+              "folder",
+              "event"
+            ]
+          },
+          "locked_by": {
+            "type": "string"
+          },
+          "lock_timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Ressources partag\u00e9es avec locks"
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conflict_id": {
+            "type": "string"
+          },
+          "resource_id": {
+            "type": "string"
+          },
+          "participant_1": {
+            "type": "string"
+          },
+          "participant_2": {
+            "type": "string"
+          },
+          "conflict_type": {
+            "type": "string"
+          },
+          "resolution_strategy": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean"
+          }
+        }
+      },
+      "description": "Conflits d\u00e9tect\u00e9s et leur r\u00e9solution"
+    },
+    "activity_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string"
+          },
+          "participant_id": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "resource_id": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object"
+          }
+        }
+      },
+      "description": "Log de toutes les activit\u00e9s"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "completed"
+      ],
+      "default": "active"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

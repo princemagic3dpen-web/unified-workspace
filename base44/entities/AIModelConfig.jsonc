@@ -1,0 +1,66 @@
+{
+  "name": "AIModelConfig",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom du mod\u00e8le IA"
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "huggingface",
+        "ollama",
+        "localai",
+        "replicate",
+        "together",
+        "groq"
+      ],
+      "description": "Fournisseur d'API"
+    },
+    "model_id": {
+      "type": "string",
+      "description": "ID du mod\u00e8le (ex: meta-llama/Llama-2-70b-chat-hf)"
+    },
+    "api_endpoint": {
+      "type": "string",
+      "description": "Endpoint API"
+    },
+    "is_free": {
+      "type": "boolean",
+      "default": true
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "text",
+          "vision",
+          "code",
+          "math",
+          "reasoning",
+          "translation"
+        ]
+      }
+    },
+    "max_tokens": {
+      "type": "integer",
+      "default": 4096
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false
+    },
+    "priority": {
+      "type": "integer",
+      "default": 1,
+      "description": "Priorit\u00e9 d'utilisation (1=haute, 5=basse)"
+    }
+  },
+  "required": [
+    "name",
+    "provider",
+    "model_id"
+  ]
+}

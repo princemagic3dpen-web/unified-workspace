@@ -1,0 +1,61 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Titre de la t\u00e2che"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description d\u00e9taill\u00e9e"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "todo",
+        "in_progress",
+        "done"
+      ],
+      "default": "todo"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Assign\u00e9 \u00e0 (humain ou IA)"
+    },
+    "ai_generated": {
+      "type": "boolean",
+      "default": false
+    },
+    "mathematical_priority": {
+      "type": "number",
+      "description": "Priorit\u00e9 calcul\u00e9e math\u00e9matiquement"
+    },
+    "event_id": {
+      "type": "string",
+      "description": "Li\u00e9 \u00e0 un \u00e9v\u00e9nement"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "title",
+    "status"
+  ]
+}

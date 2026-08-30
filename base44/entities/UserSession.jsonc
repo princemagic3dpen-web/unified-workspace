@@ -1,0 +1,45 @@
+{
+  "name": "UserSession",
+  "type": "object",
+  "properties": {
+    "user_identifier": {
+      "type": "string",
+      "description": "Identifiant unique de l'utilisateur"
+    },
+    "voice_signature": {
+      "type": "object",
+      "description": "Signature vocale math\u00e9matique unique"
+    },
+    "keyboard_pattern": {
+      "type": "object",
+      "description": "Pattern de frappe clavier"
+    },
+    "mouse_behavior": {
+      "type": "object",
+      "description": "Comportement souris (vitesse, trajectoires)"
+    },
+    "auto_detected": {
+      "type": "boolean",
+      "default": false
+    },
+    "detection_confidence": {
+      "type": "number",
+      "description": "Confiance de d\u00e9tection 0-1"
+    },
+    "session_start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "preferences": {
+      "type": "object",
+      "description": "Pr\u00e9f\u00e9rences utilisateur"
+    }
+  },
+  "required": [
+    "user_identifier"
+  ]
+}

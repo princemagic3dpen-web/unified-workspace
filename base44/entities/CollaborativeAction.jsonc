@@ -1,0 +1,96 @@
+{
+  "name": "CollaborativeAction",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "ID de la session collaborative"
+    },
+    "actor_id": {
+      "type": "string",
+      "description": "ID de l'acteur (humain ou agent)"
+    },
+    "actor_type": {
+      "type": "string",
+      "enum": [
+        "human",
+        "ai_agent"
+      ],
+      "description": "Type d'acteur"
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "create",
+        "update",
+        "delete",
+        "move",
+        "rename",
+        "merge",
+        "conflict_resolution"
+      ],
+      "description": "Type d'action"
+    },
+    "resource_type": {
+      "type": "string",
+      "enum": [
+        "file",
+        "folder",
+        "event",
+        "presentation",
+        "document"
+      ],
+      "description": "Type de ressource affect\u00e9e"
+    },
+    "resource_id": {
+      "type": "string",
+      "description": "ID de la ressource"
+    },
+    "before_state": {
+      "type": "object",
+      "description": "\u00c9tat avant l'action (hash + snapshot)"
+    },
+    "after_state": {
+      "type": "object",
+      "description": "\u00c9tat apr\u00e8s l'action (hash + snapshot)"
+    },
+    "conflict_detected": {
+      "type": "boolean",
+      "default": false
+    },
+    "conflict_resolution_strategy": {
+      "type": "string",
+      "enum": [
+        "semantic_merge",
+        "temporal_priority",
+        "voting",
+        "manual",
+        "ai_suggested"
+      ],
+      "description": "Strat\u00e9gie de r\u00e9solution de conflit"
+    },
+    "merge_details": {
+      "type": "object",
+      "description": "D\u00e9tails du merge si applicable"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_reversible": {
+      "type": "boolean",
+      "default": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "M\u00e9tadonn\u00e9es additionnelles"
+    }
+  },
+  "required": [
+    "session_id",
+    "actor_id",
+    "actor_type",
+    "action_type",
+    "resource_type"
+  ]
+}

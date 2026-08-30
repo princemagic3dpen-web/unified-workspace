@@ -1,0 +1,57 @@
+{
+  "name": "VoiceTranscription",
+  "type": "object",
+  "properties": {
+    "speaker_id": {
+      "type": "string",
+      "description": "ID du locuteur"
+    },
+    "speaker_type": {
+      "type": "string",
+      "enum": [
+        "human",
+        "ai"
+      ],
+      "description": "Type de locuteur"
+    },
+    "text": {
+      "type": "string",
+      "description": "Texte transcrit"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "URL audio original"
+    },
+    "voice_signature": {
+      "type": "object",
+      "description": "Signature vocale math\u00e9matique"
+    },
+    "confidence": {
+      "type": "number",
+      "description": "Confiance transcription 0-1"
+    },
+    "language": {
+      "type": "string",
+      "default": "fr-FR"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "conversation_id": {
+      "type": "string"
+    },
+    "is_song": {
+      "type": "boolean",
+      "default": false
+    },
+    "musical_notation": {
+      "type": "string",
+      "description": "Partition musicale si chanson d\u00e9tect\u00e9e"
+    }
+  },
+  "required": [
+    "speaker_type",
+    "text"
+  ]
+}

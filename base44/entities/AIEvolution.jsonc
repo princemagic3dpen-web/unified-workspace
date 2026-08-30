@@ -1,0 +1,124 @@
+{
+  "name": "AIEvolution",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version de l'\u00e9volution (ex: v1.0.245)"
+    },
+    "model_improvements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "improvement_type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "impact_score": {
+            "type": "number"
+          },
+          "code_changes": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Am\u00e9liorations du mod\u00e8le IA"
+    },
+    "mathematical_laws_discovered": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs des nouvelles lois math\u00e9matiques d\u00e9couvertes"
+    },
+    "errors_detected": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "error_type": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "auto_corrected": {
+            "type": "boolean"
+          },
+          "correction_code": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "llama_models_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Liste des mod\u00e8les LLaMA utilis\u00e9s (500x)"
+    },
+    "transformer_models_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Mod\u00e8les Transformer utilis\u00e9s"
+    },
+    "performance_metrics": {
+      "type": "object",
+      "properties": {
+        "accuracy": {
+          "type": "number"
+        },
+        "speed": {
+          "type": "number"
+        },
+        "memory_efficiency": {
+          "type": "number"
+        },
+        "autonomy_level": {
+          "type": "number"
+        }
+      }
+    },
+    "autonomous_improvements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "feature": {
+            "type": "string"
+          },
+          "self_generated_code": {
+            "type": "string"
+          },
+          "test_results": {
+            "type": "object"
+          }
+        }
+      },
+      "description": "Am\u00e9liorations autonomes auto-g\u00e9n\u00e9r\u00e9es"
+    },
+    "training_data_collected": {
+      "type": "integer",
+      "description": "Nombre d'exemples collect\u00e9s pour apprentissage"
+    },
+    "internet_data_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Sources internet utilis\u00e9es pour am\u00e9lioration"
+    }
+  },
+  "required": [
+    "version"
+  ]
+}

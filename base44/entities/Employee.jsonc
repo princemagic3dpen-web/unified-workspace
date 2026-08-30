@@ -1,0 +1,56 @@
+{
+  "name": "Employee",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Nom complet"
+    },
+    "company_id": {
+      "type": "string",
+      "description": "ID entreprise"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string",
+      "description": "Poste"
+    },
+    "department": {
+      "type": "string",
+      "description": "D\u00e9partement"
+    },
+    "hire_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "salary": {
+      "type": "number"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs des projets assign\u00e9s"
+    },
+    "performance_score": {
+      "type": "number",
+      "description": "Score performance 0-100"
+    }
+  },
+  "required": [
+    "full_name",
+    "company_id"
+  ]
+}
